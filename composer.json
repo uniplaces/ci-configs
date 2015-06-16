@@ -1,0 +1,18 @@
+{
+  "name": "uniplaces/ci-configs",
+  "license": "MIT",
+  "type": "library",
+  "description": "Uniplaces' CI config",
+  "require": {
+      "php": ">=5.3.2",
+      "symfony/process": "2.0.10",
+      "uniplaces/uniplaces-library": "dev-master#95644efe1c269f006ce4826db0122bfdaef4e7d2"
+  },
+
+  "repositories": [
+      {
+          "type": "vcs",
+          "url": "git@github.com:uniplaces/uniplaces-library.git"
+      }
+  ]
+}

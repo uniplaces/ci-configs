@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<ruleset name="Uniplaces">
+
+    <description>Coding standard for Uniplaces</description>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>cache/*</exclude-pattern>
+    <exclude-pattern>tests/*</exclude-pattern>
+    <exclude-pattern>Tests/*</exclude-pattern>
+    <exclude-pattern>bin/*</exclude-pattern>
+    <exclude-pattern>tmp/*</exclude-pattern>
+    <exclude-pattern>vagrant/*</exclude-pattern>
+    <exclude-pattern>resources/*</exclude-pattern>
+    <exclude-pattern>config/*</exclude-pattern>
+    <exclude-pattern>web/*</exclude-pattern>
+
+    <rule ref="PSR2"/>
+
+
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <rule ref="Generic.Commenting.Todo"/>
+    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+    <rule ref="Generic.Commenting.Todo.CommentFound">
+        <message>Please review this TODO comment: %s</message>
+        <severity>3</severity>
+    </rule>
+
+    <rule ref="Generic.Commenting.Fixme.CommentFound">
+        <message>Please review this Fixme comment: %s</message>
+        <severity>3</severity>
+    </rule>
+
+
+    <rule ref="Generic.Files.LineLength.MaxExceeded">
+        <message>Line contains %s chars, which is longer than the max limit of %s</message>
+    </rule>
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <message>Line longer than %s characters; contains %s characters</message>
+    </rule>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="120"/>
+        </properties>
+    </rule>
+
+    <rule ref="Generic.Files.LineEndings">
+        <properties>
+            <property name="eolChar" value="\r\n"/>
+        </properties>
+    </rule>
+
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+        <properties>
+            <property name="maxPadding" value="8"/>
+            <property name="ignoreMultiLine" value="true"/>
+            <property name="error" value="true"/>
+        </properties>
+    </rule>
+
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+        <message>Please don't use double quotes in: %s</message>
+        <severity>3</severity>
+    </rule>
+
+    <!--
+       There is a special internal error message produced by PHP_CodeSniffer
+       when it is unable to detect code in a file, possible due to
+       the use of short open tags even though php.ini disables them.
+       You can disable this message in the same way as sniff messages.
+
+       Again, the code here will be displayed in the PHP_CodeSniffer
+       output when using the -s command line argument while checking a file.
+    -->
+    <rule ref="Internal.NoCodeFound">
+        <severity>0</severity>
+    </rule>
+</ruleset>
