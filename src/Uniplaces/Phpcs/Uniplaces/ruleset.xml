@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<ruleset name="Uniplaces">
+
+    <description>Coding standard for Uniplaces</description>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>cache/*</exclude-pattern>
+    <exclude-pattern>tests/*</exclude-pattern>
+    <exclude-pattern>Tests/*</exclude-pattern>
+    <exclude-pattern>bin/*</exclude-pattern>
+    <exclude-pattern>tmp/*</exclude-pattern>
+    <exclude-pattern>vagrant/*</exclude-pattern>
+    <exclude-pattern>resources/*</exclude-pattern>
+    <exclude-pattern>config/*</exclude-pattern>
+    <exclude-pattern>web/*</exclude-pattern>
+
+    <rule ref="PSR2"/>
+
+    <!-- DEBUG -->
+    <rule ref="Uniplaces.Debug.DebugCode"/>
+    <!-- DEBUG -->
+
+    <!-- ARRAYS -->
+    <!-- Ensure that there are no spaces around square brackets -->
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+    <!-- ensure that arrays conform to the array coding standard -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration"/>
+    <!-- Bans the use of the PHP long array syntax -->
+    <!--<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>-->
+    <!-- end of ARRAYS -->
+
+    <!-- CLASSES -->
+    <!-- declaration of the class and its inheritance is correct. -->
+    <rule ref="Squiz.Classes.ClassDeclaration"/>
+    <!-- file name and the name of the class contained within the file -->
+    <rule ref="Squiz.Classes.ClassFileName"/>
+    <!-- self member references -->
+    <rule ref="Squiz.Classes.SelfMemberReference"/>
+    <!-- classes are in camel caps, and the first letter is capitalised -->
+    <rule ref="Squiz.Classes.ValidClassName"/>
+    <!-- end of CLASSES-->
+
+    <!-- CODE ANALYSIS -->
+    <!-- Checks the for unused function parameters -->
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <!-- Detects unnecessary overridden methods that simply call their parent -->
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
+    <!-- endo of CODE ANALYSIS-->
+
+
+    <!-- COMMENTING -->
+    <!-- Parses and verifies the doc comments for functions -->
+    <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
+    <!-- Parses and verifies the class doc comment -->
+    <rule ref="Squiz.Commenting.ClassComment" />
+    <!-- stars in a doc comment align correctly -->
+    <rule ref="Squiz.Commenting.DocCommentAlignment" />
+    <!-- @throws tag exists for a function that throws exceptions -->
+    <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
+    <!-- Parses and verifies the variable doc comment -->
+    <!--<rule ref="Squiz.Commenting.VariableComment" />-->
+    <!-- Warns about TODO comments -->
+    <rule ref="Generic.Commenting.Todo"/>
+    <!-- Warns about TODO comments -->
+    <rule ref="Generic.Commenting.Todo.CommentFound">
+        <message>Please review this TODO comment: %s</message>
+        <severity>3</severity>
+    </rule>
+    <!-- Warns about FIXME comments -->
+    <rule ref="Generic.Commenting.Fixme"/>
+    <!-- Warns about FIXME comments  -->
+    <rule ref="Generic.Commenting.Fixme.CommentFound">
+        <message>Please review this Fixme comment: %s</message>
+        <severity>3</severity>
+    </rule>
+    <!-- end of COMMENTING -->
+
+    <!-- CONTROL STRUCTURES-->
+    <!-- control statements conform to their coding standards -->
+    <rule ref="Squiz.ControlStructures.ControlSignature"/>
+    <!-- there is a space between each condition of foreach loops -->
+    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+    <!-- there is a space between each condition of foreach loops -->
+    <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
+    <!-- spacing of shorthand IF statements -->
+    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+    <!-- all control structure keywords are lowercase -->
+    <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+    <!-- breaks and cases are aligned correctly according to their parent switch's alignment and enforces other switch formatting -->
+    <rule ref="Squiz.ControlStructures.SwitchDeclaration"/>
+    <!-- end of CONTROL STRUCTURES -->
+
+
+    <!-- FUNCTIONS -->
+    <!-- arguments in function declarations are spaced correctly -->
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+    <!-- function declaration is correct -->
+    <rule ref="Squiz.Functions.FunctionDeclaration"/>
+    <!-- duplicate arguments are not used in function declarations -->
+    <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
+    <!-- Only one argument per line in multi-line function calls -->
+    <rule ref="PEAR.Functions.FunctionCallSignature">
+        <properties>
+            <property name="allowMultipleArguments" value="false"/>
+        </properties>
+    </rule>
+    <!-- end of FUNCTIONS -->
+
+    <!-- PHP -->
+    <!-- Disallow public non action methods in controller -->
+    <rule ref="Uniplaces.PHP.ControllerFunctions"/>
+    <!-- disallow spec methods -->
+    <rule ref="Uniplaces.PHP.ForbiddenFunctions"/>
+    <!--Warns about code that can never been executed  -->
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+    <!-- use of eval() is discouraged -->
+    <rule ref="Squiz.PHP.Eval"/>
+    <!-- Throws an error or warning when any code prefixed with an asperand is encountered -->
+    <rule ref="Generic.PHP.NoSilencedErrors"/>
+    <!-- Discourages the use of alias functions that are kept in PHP for compatibility -->
+    <rule ref="Generic.PHP.ForbiddenFunctions"/>
+    <!-- Discourages the use of deprecated functions that are kept in PHP -->
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <!-- end of PHP -->
+
+    <!-- STRINGS -->
+    <!-- no spaces between the concatenation operator -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing"/>
+    <!-- any use of Double Quotes ("") are warranted -->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+        <message>Please don't use double quotes in: %s</message>
+        <severity>3</severity>
+    </rule>
+    <!-- end of STRINGS -->
+
+    <!-- Files -->
+    <!-- Checks all lines in the file -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="120"/>
+        </properties>
+    </rule>
+    <!-- Checks all lines in the file -->
+    <rule ref="Generic.Files.LineLength.MaxExceeded">
+        <message>Line contains %s chars, which is longer than the max limit of %s</message>
+    </rule>
+    <!-- Checks all lines in the file -->
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <message>Line longer than %s characters; contains %s characters</message>
+    </rule>
+    <!-- Checks all lines in the file -->
+    <rule ref="Generic.Files.LineEndings">
+        <properties>
+            <property name="eolChar" value="\n"/>
+        </properties>
+    </rule>
+    <!-- Checks that only one class is declared per file -->
+    <rule ref="Generic.Files.OneClassPerFile"/>
+    <!-- only one interface is declared per file -->
+    <rule ref="Generic.Files.OneInterfacePerFile"/>
+    <!-- end of Files -->
+
+    <!-- OPERATORS -->
+    <!-- The use of === true is enforced over implicit true statements -->
+    <rule ref="Squiz.Operators.ComparisonOperatorUsage"/>
+    <!-- Use the && and || operators -->
+    <rule ref="Squiz.Operators.ValidLogicalOperators"/>
+    <!-- end of OPERATORS -->
+
+    <!-- WHITESPACE -->
+    <!-- cast statements don't contain whitespace -->
+    <rule ref="Squiz.WhiteSpace.CastSpacing"/>
+    <!-- all language constructs (without brackets) contain a single space between themselves and their content -->
+    <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
+    <!-- operators have valid spacing surrounding them -->
+    <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
+    <!-- there is no whitespace before a semicolon -->
+    <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+    <!-- no whitespace proceeds the first content of the file -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+    <!-- end of WHITESPACE -->
+
+
+    <!-- FORMATTING -->
+    <!-- Checks alignment of assignments -->
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+        <properties>
+            <property name="maxPadding" value="8"/>
+            <property name="ignoreMultiLine" value="true"/>
+            <property name="error" value="true"/>
+        </properties>
+    </rule>
+    <!-- end of FORMATTING -->
+
+
+    <!-- SCOPE -->
+    <!-- class members have scope modifiers -->
+    <rule ref="Squiz.Scope.MemberVarScope"/>
+    <!-- class methods have scope modifiers -->
+    <rule ref="Squiz.Scope.MethodScope"/>
+    <!-- usage of "$this" in static methods -->
+    <rule ref="Squiz.Scope.StaticThisUsage"/>
+    <!-- end of SCOPE -->
+
+
+    <!--
+       There is a special internal error message produced by PHP_CodeSniffer
+       when it is unable to detect code in a file, possible due to
+       the use of short open tags even though php.ini disables them.
+       You can disable this message in the same way as sniff messages.
+
+       Again, the code here will be displayed in the PHP_CodeSniffer
+       output when using the -s command line argument while checking a file.
+    -->
+    <rule ref="Internal.NoCodeFound">
+        <severity>0</severity>
+    </rule>
+</ruleset>

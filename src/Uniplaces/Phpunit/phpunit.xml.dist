@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://Phpunit.de/manual/current/en/appendixes.configuration.html -->
+<phpunit>
+    <listeners>
+        <listener class="\Uniplaces\Phpunit\ScrutinizerCloverListener" file="ci-configs/src/Uniplaces/Phpunit/ScrutinizerCloverListener.php">
+            <arguments>
+                <string>../../doc/clover.xml</string>
+            </arguments>
+        </listener>
+    </listeners>
+
+    <logging>
+        <log type="coverage-clover" target="../../docs/phpunit/clover.xml"/>
+    </logging>
+</phpunit>
