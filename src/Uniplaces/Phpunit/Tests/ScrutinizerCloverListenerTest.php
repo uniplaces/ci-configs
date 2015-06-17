@@ -2,13 +2,16 @@
 
 namespace Uniplaces\Tests\Phpunit;
 
+use PHPUnit_Framework_TestCase;
+
 use Mockery;
 use Uniplaces\Phpunit\ScrutinizerCloverListener;
+
 /**
  * Class ScrutinizerCloverListenerTest
  * @package phpunit
  */
-class ScrutinizerCloverListenerTest extends \PHPUnit_Framework_TestCase
+class ScrutinizerCloverListenerTest extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -28,8 +31,8 @@ class ScrutinizerCloverListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \HttpException
-     * @expectedException \HttpException
+     * @throws \Exception
+     * @expectedException \Exception
      */
     public function testEndTestSuiteDownloadUploadFail()
     {

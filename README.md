@@ -30,6 +30,7 @@ This repository is dependent on symfony bundles, it requires you to first run [c
         "uniplaces/ci-config": "dev-master"
     },
     "repositories": [
+        ...
         {
             "type": "vcs",
             "url": "git@github.com:uniplaces/ci-config.git"

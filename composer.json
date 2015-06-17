@@ -8,11 +8,24 @@
       "symfony/process": "2.0.10",
       "uniplaces/uniplaces-library": "dev-master#95644efe1c269f006ce4826db0122bfdaef4e7d2"
   },
-
+  "require-dev": {
+    "phpunit/phpunit": "~4",
+    "squizlabs/php_codesniffer": "~1",
+    "phpmd/phpmd": "~1",
+    "pdepend/pdepend": "~1",
+    "sebastian/phpcpd": "~2",
+    "mockery/mockery": "0.9.*",
+    "phploc/phploc": "2.*",
+    "satooshi/php-coveralls": "dev-master",
+    "knplabs/gaufrette": "dev-master"
+  },
   "repositories": [
       {
           "type": "vcs",
           "url": "git@github.com:uniplaces/uniplaces-library.git"
       }
-  ]
+  ],
+  "autoload": {
+    "psr-0": { "": "src/" }
+  }
 }
