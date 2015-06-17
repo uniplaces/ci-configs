@@ -17,9 +17,6 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
     const INSTALL_DIR = '/tmp';
     const SCRUTINIZER_API_TOKEN = '7c8ad0ef7f0a42323cee76eaaf9da7a7339acd24b23ccd09a1dbe2f1c5fbcaa9';
 
-    public function bla()
-    {}
-
     /**
      * @param \PHPUnit_Framework_TestSuite $suite
      * @return bool

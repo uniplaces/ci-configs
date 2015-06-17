@@ -15,7 +15,7 @@ class ScrutinizerCloverListenerTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @throws \HttpException
+     * @throws \Exception
      */
     public function testEndTestSuiteDownloadUpload()
     {
