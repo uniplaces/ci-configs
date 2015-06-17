@@ -22,7 +22,7 @@ before_commands:
 checks:
     php:
         custom_coding_standard:
-            git_repository: 'uniplaces/ci-config'
+            git_repository: 'uniplaces/ci-configs'
             git_version: ''
             ruleset_path: 'config/php-cs/ruleset.xml'
 
