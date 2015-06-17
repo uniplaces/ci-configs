@@ -1,13 +1,13 @@
 <?php
 
-namespace Phpunit;
+namespace Uniplaces\Phpunit;
 
 use Symfony\Component\Process\Process;
 use Uniplaces\Library\Stringy\S;
 
 /**
  * Class ScrutinizerCloverListener
- * @package Phpunit
+ * @package Uniplaces
  */
 class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
 {
