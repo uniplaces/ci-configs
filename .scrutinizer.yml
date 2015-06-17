@@ -24,7 +24,7 @@ checks:
         custom_coding_standard:
             git_repository: 'uniplaces/ci-config'
             git_version: ''
-            ruleset_path: 'php-cs/ruleset.xml'
+            ruleset_path: 'config/php-cs/ruleset.xml'
 
 tools:
     php_sim:
@@ -49,7 +49,7 @@ tools:
     php_mess_detector:
         enabled: true
         config:
-            ruleset: 'php-md/ruleset.xml'
+            ruleset: 'config/php-md/ruleset.xml'
     sensiolabs_security_checker:
         enabled: true
     external_code_coverage:
