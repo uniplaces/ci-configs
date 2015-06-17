@@ -1,0 +1,7 @@
+/vendor/
+/bin/*
+/.idea
+coverage/*
+/composer.phar
+!/bin/static-analysis.sh
+phpunit.xml
