@@ -17,31 +17,16 @@ filter:
         - 'web/*'
 before_commands:
     - 'composer install --prefer-source'
-    # repository has to be cloned in order to use it in custom_coding_standard directive
-    - 'git clone https://github.com/uniplaces/ci-configs.git'
 checks:
     php:
         custom_coding_standard:
-            git_repository: 'uniplaces/ci-configs'
+            git_repository: 'https://github.com/uniplaces/ci-configs.git'
             git_version: ''
             ruleset_path: 'config/php-cs/ruleset.xml'
 
 tools:
     php_sim:
         enabled: true
-        excluded_dirs:
-            - tests
-            - test
-            - Tests
-            - Test
-            - cache
-            - bin
-            - tmp
-            - vagrant
-            - resources
-            - config
-            - web
-            - vendor
     # PHP Similarity Analyzer and Copy/paste Detector cannot be used at
     # the same time right now. Make sure to either remove, or disable one.
     php_cpd:
@@ -86,67 +71,67 @@ tools:
             - config
             - web
             - vendor
-      php_analyzer:
+    php_analyzer:
         enabled: true
         config:
-          # Checks
-          check_access_control:
-            enabled: true
-          basic_semantic_checks:
-            enabled: true
-          simplify_boolean_return:
-            enabled: true
-          dead_assignments:
-            enabled: true
-          typo_checks:
-            enabled: true
-          check_usage_context:
-            enabled: true
-            method_call_on_non_object:
-              enabled: true
-              ignore_null_pointer: true
-            foreach:
-              value_as_reference: true
-              traversable: true
-            missing_argument: true
-            argument_type_checks: strict
-          phpunit_checks:
-            enabled: true
-          parameter_reference_check:
-            enabled: true
-          precedence_checks:
-            enabled: true
-            assignment_in_condition: true
-            comparison_of_bit_result: true
-          reflection_checks:
-            enabled: true
-          checkstyle:
-            enabled: true
-            no_trailing_whitespace: true
-            naming:
-              enabled: false
-          suspicious_code:
-            enabled: true
-            overriding_parameter: true
-            overriding_closure_use: true
-            parameter_closure_use_conflict: true
-            parameter_multiple_times: true
-            non_existent_class_in_instanceof_check: true
-            non_existent_class_in_catch_clause: true
-            assignment_of_null_return: true
-            non_commented_switch_fallthrough: true
-            non_commented_empty_catch_block: true
-            overriding_private_members: true
-            use_statement_alias_conflict: true
-            precedence_in_condition_assignment: true
-          unreachable_code:
-            enabled: true
-          check_variables:
-            enabled: true
-          # Fixes
-          doc_comment_fixes:
-            enabled: false
-          reflection_fixes:
-            enabled: false
-          use_statement_fixes:
-            enabled: false
+            # Checks
+            check_access_control:
+                enabled: true
+            basic_semantic_checks:
+                enabled: true
+            simplify_boolean_return:
+                enabled: true
+            dead_assignments:
+                enabled: true
+            typo_checks:
+                enabled: true
+            check_usage_context:
+                enabled: true
+                method_call_on_non_object:
+                    enabled: true
+                    ignore_null_pointer: true
+                foreach:
+                    value_as_reference: true
+                    traversable: true
+                missing_argument: true
+                argument_type_checks: strict
+            phpunit_checks:
+                enabled: true
+            parameter_reference_check:
+                enabled: true
+            precedence_checks:
+                enabled: true
+                assignment_in_condition: true
+                comparison_of_bit_result: true
+            reflection_checks:
+                enabled: true
+            checkstyle:
+                enabled: true
+                no_trailing_whitespace: true
+                naming:
+                    enabled: false
+            suspicious_code:
+                enabled: true
+                overriding_parameter: true
+                overriding_closure_use: true
+                parameter_closure_use_conflict: true
+                parameter_multiple_times: true
+                non_existent_class_in_instanceof_check: true
+                non_existent_class_in_catch_clause: true
+                assignment_of_null_return: true
+                non_commented_switch_fallthrough: true
+                non_commented_empty_catch_block: true
+                overriding_private_members: true
+                use_statement_alias_conflict: true
+                precedence_in_condition_assignment: true
+            unreachable_code:
+                enabled: true
+            check_variables:
+                enabled: true
+            # Fixes
+            doc_comment_fixes:
+                enabled: false
+            reflection_fixes:
+                enabled: false
+            use_statement_fixes:
+                enabled: false

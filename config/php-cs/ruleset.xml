@@ -16,22 +16,108 @@
 
     <rule ref="PSR2"/>
 
+    <!-- ARRAYS -->
+    <!-- Ensure that there are no spaces around square brackets -->
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+    <!-- ensure that arrays conform to the array coding standard -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration"/>
+    <!--  -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <!-- end of ARRAYS -->
 
-    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <!-- CLASSES -->
+    <!-- declaration of the class and its inheritance is correct. -->
+    <rule ref="Squiz.Classes.ClassDeclaration"/>
+    <!-- file name and the name of the class contained within the file -->
+    <rule ref="Squiz.Classes.ClassFileName"/>
+    <!-- self member references -->
+    <rule ref="Squiz.Classes.SelfMemberReference"/>
+    <!-- classes are in camel caps, and the first letter is capitalised -->
+    <rule ref="Squiz.Classes.ValidClassName"/>
+    <!-- end of CLASSES-->
+
+    <!-- COMMENTING -->
+    <!-- Parses and verifies the doc comments for functions -->
+    <rule ref="Squiz.Commenting.FunctionComment" />
+    <!-- Parses and verifies the class doc comment -->
+    <rule ref="Squiz.Commenting.ClassComment" />
+    <!-- stars in a doc comment align correctly -->
+    <rule ref="Squiz.Commenting.DocCommentAlignment" />
+    <!-- Parses and verifies the doc comments for functions -->
+    <rule ref="Squiz.Commenting.FunctionComment" />
+    <!-- @throws tag exists for a function that throws exceptions -->
+    <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
+    <!-- Parses and verifies the variable doc comment -->
+    <rule ref="Squiz.Commenting.VariableComment" />
+    <!--  -->
     <rule ref="Generic.Commenting.Todo"/>
-    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
-
+    <!--  -->
     <rule ref="Generic.Commenting.Todo.CommentFound">
         <message>Please review this TODO comment: %s</message>
         <severity>3</severity>
     </rule>
-
+    <!--  -->
     <rule ref="Generic.Commenting.Fixme.CommentFound">
         <message>Please review this Fixme comment: %s</message>
         <severity>3</severity>
     </rule>
+    <!-- end of COMMENTING -->
+
+    <!-- CONTROL STRUCTURES-->
+    <!-- control statements conform to their coding standards -->
+    <rule ref="Squiz.ControlStructures.ControlSignature"/>
+    <!-- there is a space between each condition of foreach loops -->
+    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+    <!-- there is a space between each condition of foreach loops -->
+    <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
+    <!-- spacing of shorthand IF statements -->
+    <rule ref="Squiz.ControlStructures.InlineControlStructure"/>
+    <!-- all control structure keywords are lowercase -->
+    <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+    <!-- breaks and cases are aligned correctly according to their parent switch's alignment and enforces other switch formatting -->
+    <rule ref="Squiz.ControlStructures.SwitchDeclaration"/>
+    <!-- end of CONTROL STRUCTURES -->
 
 
+    <!-- FUNCTIONS -->
+    <!-- arguments in function declarations are spaced correctly -->
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+    <!-- function declaration is correct -->
+    <rule ref="Squiz.Functions.FunctionDeclaration"/>
+    <!-- duplicate arguments are not used in function declarations -->
+    <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
+    <!-- Only one argument per line in multi-line function calls -->
+    <rule ref="PEAR.Functions.FunctionCallSignature">
+        <properties>
+            <property name="allowMultipleArguments" value="false"/>
+        </properties>
+    </rule>
+    <!-- end of FUNCTIONS -->
+
+    <!-- PHP -->
+    <!--Warns about code that can never been executed  -->
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+    <!-- use of eval() is discouraged -->
+    <rule ref="Squiz.PHP.Eval"/>
+    <!--  -->
+    <rule ref="Generic.PHP.NoSilencedErrors"/>
+    <!--  -->
+    <rule ref="Generic.PHP.ForbiddenFunctions"/>
+    <!--  -->
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <!-- end of PHP -->
+
+    <!-- STRINGS -->
+    <!-- no spaces between the concatenation operator -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing"/>
+    <!-- any use of Double Quotes ("") are warranted -->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+        <message>Please don't use double quotes in: %s</message>
+        <severity>3</severity>
+    </rule>
+    <!-- end of STRINGS -->
+
+    <!-- Files -->
     <rule ref="Generic.Files.LineLength.MaxExceeded">
         <message>Line contains %s chars, which is longer than the max limit of %s</message>
     </rule>
@@ -48,10 +134,33 @@
 
     <rule ref="Generic.Files.LineEndings">
         <properties>
-            <property name="eolChar" value="\r\n"/>
+            <property name="eolChar" value="\n"/>
         </properties>
     </rule>
+    <!-- end of Files -->
 
+    <!-- OPERATORS -->
+    <!-- The use of === true is enforced over implicit true statements -->
+    <rule ref="Squiz.Operators.ComparisonOperatorUsage"/>
+    <!-- Use the && and || operators -->
+    <rule ref="Squiz.Operators.ValidLogicalOperators"/>
+    <!-- end of OPERATORS -->
+
+    <!-- WHITESPACE -->
+    <!-- cast statements don't contain whitespace -->
+    <rule ref="Squiz.WhiteSpace.CastSpacing"/>
+    <!-- all language constructs (without brackets) contain a single space between themselves and their content -->
+    <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
+    <!-- operators have valid spacing surrounding them -->
+    <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
+    <!-- there is no whitespace before a semicolon -->
+    <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+    <!-- no whitespace proceeds the first content of the file -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+    <!-- end of WHITESPACE -->
+
+
+    <!-- FORMATTING -->
     <rule ref="Generic.Formatting.MultipleStatementAlignment">
         <properties>
             <property name="maxPadding" value="8"/>
@@ -59,11 +168,16 @@
             <property name="error" value="true"/>
         </properties>
     </rule>
+    <!-- end of FORMATTING -->
 
-    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
-        <message>Please don't use double quotes in: %s</message>
-        <severity>3</severity>
-    </rule>
+
+    <!-- SCOPE -->
+    <rule ref="Squiz.Scope.MemberVarScope"/>
+    <rule ref="Squiz.Scope.StaticThisUsage"/>
+    <!-- end of SCOPE -->
+
+
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
 
     <!--
        There is a special internal error message produced by PHP_CodeSniffer

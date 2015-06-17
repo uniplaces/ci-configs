@@ -19,6 +19,7 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
 
     /**
      * @param \PHPUnit_Framework_TestSuite $suite
+     *
      * @return bool
      * @throws \Exception
      */
