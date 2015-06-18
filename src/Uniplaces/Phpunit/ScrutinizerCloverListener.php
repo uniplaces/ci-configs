@@ -3,7 +3,6 @@
 namespace Uniplaces\Phpunit;
 
 use Symfony\Component\Process\Process;
-use Uniplaces\Library\Stringy\S;
 
 /**
  * Class ScrutinizerCloverListener
@@ -25,11 +24,7 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
      */
     public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
     {
-        $file = S::render('{installDir}/{ocularPhar}',
-            [
-                'installDir' => self::INSTALL_DIR,
-                'ocularPhar' => self::OCULAR_PHAR
-            ]);
+        $file = self::INSTALL_DIR . DIRECTORY_SEPARATOR  . self::OCULAR_PHAR;
 
         if (!is_file($file)) {
             if (!$this->downloadOcular()) {
@@ -49,14 +44,8 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
      */
     protected function uploadCloverReport()
     {
-        $process = S::render(
-            'php {installDir}/{ocularPhar} code-coverage:upload --access-token="{scrutinizerApiToken}" --format=php-clover {clover}',
-            [
-                'ocularPhar' => self::OCULAR_PHAR,
-                'installDir' => self::INSTALL_DIR,
-                'scrutinizerApiToken' => self::SCRUTINIZER_API_TOKEN,
-                'clover' => __DIR__ . '/../../docs/phpunit/clover.xml'
-            ]);
+        $process ='php ' . self::INSTALL_DIR . '/' . self::OCULAR_PHAR . ' code-coverage:upload --access-token="'
+            . self::SCRUTINIZER_API_TOKEN . '" --format=php-clover ' . __DIR__ . '/../../docs/phpunit/clover.xml';
 
         return $this->process($process);
     }
@@ -66,14 +55,8 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
      */
     protected function downloadOcular()
     {
-        $process = S::render(
-            'wget {ocularHost}/{ocularPhar} && mv {ocularPhar} {installDir}/{ocularPhar}',
-            [
-                'ocularHost' => self::OCULAR_HOST,
-                'ocularPhar' => self::OCULAR_PHAR,
-                'installDir' => self::INSTALL_DIR
-            ]);
-
+        $process = 'pushd ' . self::INSTALL_DIR . ' && wget ' . self::OCULAR_HOST . '/' . self::OCULAR_PHAR
+            . ' && popd > /dev/null';
         return $this->process($process);
     }
 
