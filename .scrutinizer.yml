@@ -21,7 +21,7 @@ build:
     dependencies:
         before:
             - "npm install -g dynalite"
-            - "dynalite --createTableMs 10 --deleteTableMs 10 --updateTableMs 10"
+            - "dynalite --createTableMs 10 --deleteTableMs 10 --updateTableMs 10 &"
             - "sleep 5"
             - "echo \"memory_limit = 1024M\" > ~/.phpenv/versions/$(phpenv global)/etc/conf.d/memory.ini"
             - "echo \"xdebug.max_nesting_level = 1000\" >> ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini"
