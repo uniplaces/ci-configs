@@ -44,7 +44,7 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
      */
     protected function uploadCloverReport()
     {
-        $process ='php ' . self::INSTALL_DIR . '/' . self::OCULAR_PHAR . ' code-coverage:upload --access-token="'
+        $process ='php ' . self::INSTALL_DIR . DIRECTORY_SEPARATOR . self::OCULAR_PHAR . ' code-coverage:upload --access-token="'
             . self::SCRUTINIZER_API_TOKEN . '" --format=php-clover ' . __DIR__ . '/../../docs/phpunit/clover.xml';
 
         return $this->process($process);
@@ -55,7 +55,7 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
      */
     protected function downloadOcular()
     {
-        $process = 'pushd ' . self::INSTALL_DIR . ' && wget ' . self::OCULAR_HOST . '/' . self::OCULAR_PHAR
+        $process = 'pushd ' . self::INSTALL_DIR . ' && wget ' . self::OCULAR_HOST . DIRECTORY_SEPARATOR . self::OCULAR_PHAR
             . ' && popd > /dev/null';
         return $this->process($process);
     }
