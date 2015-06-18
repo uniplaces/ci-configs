@@ -17,6 +17,19 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
     const SCRUTINIZER_API_TOKEN = '7c8ad0ef7f0a42323cee76eaaf9da7a7339acd24b23ccd09a1dbe2f1c5fbcaa9';
 
     /**
+     * @var string
+     */
+    protected $coverageClover = '';
+
+    /**
+     * @param string $coverageClover
+     */
+    public function __construct($coverageClover = null)
+    {
+        $this->coverageClover = ($coverageClover !== null) ? $coverageClover : 'clover.xml';
+    }
+
+    /**
      * @param \PHPUnit_Framework_TestSuite $suite
      *
      * @return bool
@@ -32,7 +45,7 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
             }
         }
 
-        if (!$this->uploadCloverReport()) {
+        if (!$this->uploadCloverReport($this->coverageClover)) {
             throw new \Exception('Clover report could not be uploaded');
         }
 
@@ -42,10 +55,10 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
     /**
      * @return bool
      */
-    protected function uploadCloverReport()
+    protected function uploadCloverReport($coverageClover)
     {
         $process ='php ' . self::INSTALL_DIR . DIRECTORY_SEPARATOR . self::OCULAR_PHAR . ' code-coverage:upload --access-token="'
-            . self::SCRUTINIZER_API_TOKEN . '" --format=php-clover ' . __DIR__ . '/../../docs/phpunit/clover.xml';
+            . self::SCRUTINIZER_API_TOKEN . '" --format=php-clover ' . __DIR__ . DIRECTORY_SEPARATOR . $coverageClover;
 
         return $this->process($process);
     }
