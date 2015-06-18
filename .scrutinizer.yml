@@ -62,10 +62,6 @@ tools:
             ruleset: '/tmp/ci-configs/config/php-md/ruleset.xml'
     sensiolabs_security_checker:
         enabled: true
-    external_code_coverage:
-        enabled: true
-        timeout: 300
-        runs: 15
     php_loc:
         enabled: true
         command: phploc
