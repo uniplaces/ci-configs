@@ -40,6 +40,7 @@ build:
 
 before_commands:
     - 'composer install --prefer-source'
+    - 'git clone https://github.com/uniplaces/ci-configs.git /tmp/ci-configs'
 checks:
     php:
         custom_coding_standard:
@@ -56,8 +57,9 @@ tools:
         enabled: false
     php_mess_detector:
         enabled: true
+        command: phpmd
         config:
-            ruleset: 'config/php-md/ruleset.xml'
+            ruleset: '/tmp/ci-configs/config/php-md/ruleset.xml'
     sensiolabs_security_checker:
         enabled: true
     external_code_coverage:
@@ -66,6 +68,7 @@ tools:
         runs: 15
     php_loc:
         enabled: true
+        command: phploc
         excluded_dirs:
             - tests
             - test
@@ -81,6 +84,7 @@ tools:
             - vendor
     php_pdepend:
         enabled: true
+        command: pdepend
         excluded_dirs:
             - tests
             - test
@@ -96,6 +100,21 @@ tools:
             - vendor
     php_analyzer:
         enabled: true
+        filter:
+            paths:
+                - 'src/*'
+                - 'lib/*'
+            excluded_paths:
+                - 'vendor/*'
+                - 'cache/*'
+                - 'tests/*'
+                - 'Tests/*'
+                - 'bin/*'
+                - 'tmp/*'
+                - 'vagrant/*'
+                - 'resources/*'
+                - 'config/*'
+                - 'web/*'
         config:
             # Checks
             check_access_control:
@@ -103,16 +122,15 @@ tools:
             basic_semantic_checks:
                 enabled: true
             simplify_boolean_return:
-                enabled: true
+                enabled: false
             dead_assignments:
                 enabled: true
             typo_checks:
                 enabled: true
+            deadlock_detection:
+                enabled: true
             check_usage_context:
                 enabled: true
-                method_call_on_non_object:
-                    enabled: true
-                    ignore_null_pointer: true
                 foreach:
                     value_as_reference: true
                     traversable: true
