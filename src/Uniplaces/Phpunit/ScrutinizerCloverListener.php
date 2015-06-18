@@ -53,6 +53,8 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
     }
 
     /**
+     * @param $coverageClover
+     *
      * @return bool
      */
     protected function uploadCloverReport($coverageClover)
