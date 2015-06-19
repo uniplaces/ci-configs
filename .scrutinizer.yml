@@ -45,8 +45,8 @@ checks:
     php:
         custom_coding_standard:
             git_repository: 'https://github.com/uniplaces/ci-configs.git'
-            git_version: ''
-            ruleset_path: 'config/php-cs/ruleset.xml'
+            git_version: 'HEAD'
+            ruleset_path: 'src/Uniplaces/Phpcs/ruleset.xml'
 
 tools:
     php_sim:
@@ -59,7 +59,7 @@ tools:
         enabled: true
         command: phpmd
         config:
-            ruleset: '/tmp/ci-configs/config/php-md/ruleset.xml'
+            ruleset: '/tmp/ci-configs/src/Uniplaces/Phpmd/ruleset.xml'
     sensiolabs_security_checker:
         enabled: true
     php_loc:

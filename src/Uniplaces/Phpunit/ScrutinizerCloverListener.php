@@ -39,14 +39,12 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
     {
         $file = self::INSTALL_DIR . DIRECTORY_SEPARATOR  . self::OCULAR_PHAR;
 
-        if (!is_file($file)) {
-            if (!$this->downloadOcular()) {
-                throw new \Exception('Ocular could not be downloaded');
-            }
+        if (!is_file($file) && !$this->downloadOcular()) {
+                throw new \RuntimeException('Ocular could not be downloaded');
         }
 
         if (!$this->uploadCloverReport($this->coverageClover)) {
-            throw new \Exception('Clover report could not be uploaded');
+            throw new \RuntimeException('Clover report could not be uploaded');
         }
 
         return true;

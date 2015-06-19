@@ -1,5 +1,6 @@
 <?php
 
+/** @noinspection PhpIllegalPsrClassPathInspection */
 namespace Uniplaces\Tests\Phpunit;
 
 use PHPUnit_Framework_TestCase;
@@ -15,7 +16,7 @@ class ScrutinizerCloverListenerTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @throws \Exception
+     * @throws \RuntimeException
      */
     public function testEndTestSuiteDownloadUpload()
     {
@@ -31,8 +32,8 @@ class ScrutinizerCloverListenerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Exception
-     * @expectedException \Exception
+     * @throws \RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testEndTestSuiteDownloadUploadFail()
     {
