@@ -1,0 +1,21 @@
+<documentation title="Debug code">
+    <standard>
+        <![CDATA[
+    This checks the correct usage of debug commands like print_r, var_dump, debug, etc
+    ]]>
+    </standard>
+    <standard>
+        <![CDATA[
+    Neither print_r, var_dump nor any static call of debug functions is allowed
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Invalid: Occurence of a debug command">
+            <![CDATA[
+var_dump('john doe');
+print_r('john doe');
+debugger::debug('john doe');
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
