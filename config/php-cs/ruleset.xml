@@ -22,7 +22,7 @@
     <!-- ensure that arrays conform to the array coding standard -->
     <rule ref="Squiz.Arrays.ArrayDeclaration"/>
     <!-- Bans the use of the PHP long array syntax -->
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <!--<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>-->
     <!-- end of ARRAYS -->
 
     <!-- CLASSES -->
@@ -81,7 +81,7 @@
     <!-- there is a space between each condition of foreach loops -->
     <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
     <!-- spacing of shorthand IF statements -->
-    <rule ref="Squiz.ControlStructures.InlineControlStructure"/>
+    <!--<rule ref="Squiz.ControlStructures.InlineControlStructure"/>-->
     <!-- all control structure keywords are lowercase -->
     <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
     <!-- breaks and cases are aligned correctly according to their parent switch's alignment and enforces other switch formatting -->
