@@ -46,7 +46,7 @@ checks:
         custom_coding_standard:
             git_repository: 'https://github.com/uniplaces/ci-configs.git'
             git_version: 'HEAD'
-            ruleset_path: 'src/Uniplaces/Phpcs/ruleset.xml'
+            ruleset_path: 'src/Uniplaces/Phpcs/Uniplaces/ruleset.xml'
 
 tools:
     php_sim:
