@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Refactored version of https://github.com/typo3-ci/TYPO3SniffPool/blob/develop/Sniffs/Debug/DebugCodeSniff.php
+ * Checks code for forbidden occurence of debug methods
+ *
+ * Inspired by https://github.com/typo3-ci/TYPO3SniffPool/blob/develop/Sniffs/Debug/DebugCodeSniff.php
  *
  * Class Uniplaces_Sniffs_Debug_DebugCodeSniff
  */
@@ -50,7 +52,7 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
                 break;
             case 'T_COMMENT':
                 list($error, $stackPtr, $code, $errorData) = $this->handleTComment(
-                    $stackPtr, $tokens);
+                    $stackPtr, $currentToken);
                 break;
             default:
         }
@@ -63,16 +65,15 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param int   $stackPtr
-     * @param array $tokens
+     * @param int       $stackPtr
+     * @param string    $currentToken
      *
      * @return array
      */
-    private function handleTComment($stackPtr, array $tokens)
+    private function handleTComment($stackPtr, $currentToken)
     {
-        $comment = $tokens[$stackPtr]['content'];
         $hasDebugInComment = preg_match_all(
-            '/\b((DebugUtility::)?([x]?debug)|(print_r)|(var_dump))([\s]+)?\(/', $comment);
+            '/\b((DebugUtility::)?([x]?debug)|(print_r)|(var_dump))([\s]+)?\(/', $currentToken);
         if ($hasDebugInComment) {
             return [
                 'Its not enough to comment out debug functions calls, they must be removed from code.',

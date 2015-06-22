@@ -26,7 +26,7 @@
     <!-- ensure that arrays conform to the array coding standard -->
     <rule ref="Squiz.Arrays.ArrayDeclaration"/>
     <!-- Bans the use of the PHP long array syntax -->
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <!--<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>-->
     <!-- end of ARRAYS -->
 
     <!-- CLASSES -->
@@ -109,6 +109,7 @@
     <!-- end of FUNCTIONS -->
 
     <!-- PHP -->
+    <rule ref="Uniplaces.PHP.ForbiddenFunctions"/>
     <!--Warns about code that can never been executed  -->
     <rule ref="Squiz.PHP.NonExecutableCode"/>
     <!-- use of eval() is discouraged -->
