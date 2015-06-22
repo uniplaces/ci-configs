@@ -88,7 +88,7 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
      *
      * @return bool
      */
-    private function isCallingPHPFunction($stackPtr, array $ignore, array $tokens, $prevToken, $nextToken)
+    private function isPHPFunction($stackPtr, array $ignore, array $tokens, $prevToken, $nextToken)
     {
         if (isset($ignore[$tokens[$prevToken]['code']]) === true
             || isset($ignore[$tokens[$nextToken]['code']]) === true
@@ -106,7 +106,7 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
      *
      * @return bool
      */
-    private function isCallingNonPHPFunction(array $tokens, $prevToken)
+    private function isNonPHPFunction(array $tokens, $prevToken)
     {
         if (in_array($tokens[$prevToken]['content'], ['->', '::'], true)) {
             return true;
@@ -122,27 +122,47 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $function = strtolower($tokens[$stackPtr]['content']);
 
+        $function = strtolower($tokens[$stackPtr]['content']);
         $functions = array_change_key_case($this->functions, CASE_LOWER);
-        if (array_key_exists($function, $functions) === false) {
-            return true;
-        }
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
         $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
 
-        $nsSeparator = $this->isNSSeparator($phpcsFile, $tokens, $prevToken);
-        $isCallingPHPFunction = $this->isCallingPHPFunction(
-            $stackPtr, $this->getIgnoreTokenizers(), $tokens, $prevToken, $nextToken);
-        $isCallingNonPHPFunction = $this->isCallingNonPHPFunction($tokens, $prevToken);
+        if (array_key_exists($function, $functions) === false) {
+            return true;
+        }
 
-        if ($nsSeparator || (!$isCallingPHPFunction && !$isCallingNonPHPFunction)) {
+        list($nsSeparator, $isPHPFunction, $isNonPHPFunction) = $this->getConditions(
+            $phpcsFile, $stackPtr, $tokens, $prevToken, $nextToken);
+
+        if ($nsSeparator || (!$isPHPFunction && !$isNonPHPFunction)) {
             return true;
         }
 
         return $this->notify($phpcsFile, $stackPtr, $function);
     }
+
+
+    /**
+     * @param PHP_CodeSniffer_File  $phpcsFile
+     * @param integer               $stackPtr
+     * @param array                 $tokens
+     * @param integer               $prevToken
+     * @param integer               $nextToken
+     *
+     * @return array
+     */
+    private function getConditions(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $tokens, $prevToken, $nextToken)
+    {
+        $nsSeparator = $this->isNSSeparator($phpcsFile, $tokens, $prevToken);
+        $isNonPHPFunction = $this->isNonPHPFunction($tokens, $prevToken);
+        $isPHPFunction = $this->isPHPFunction(
+            $stackPtr, $this->getIgnoreTokenizers(), $tokens, $prevToken, $nextToken);
+
+        return [$nsSeparator, $isPHPFunction, $isNonPHPFunction];
+    }
+
 
     /**
      * @return array

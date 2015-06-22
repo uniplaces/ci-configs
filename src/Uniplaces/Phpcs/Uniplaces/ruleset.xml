@@ -50,17 +50,15 @@
 
     <!-- COMMENTING -->
     <!-- Parses and verifies the doc comments for functions -->
-    <rule ref="Squiz.Commenting.FunctionComment" />
+    <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
     <!-- Parses and verifies the class doc comment -->
     <rule ref="Squiz.Commenting.ClassComment" />
     <!-- stars in a doc comment align correctly -->
     <rule ref="Squiz.Commenting.DocCommentAlignment" />
-    <!-- Parses and verifies the doc comments for functions -->
-    <rule ref="Squiz.Commenting.FunctionComment" />
     <!-- @throws tag exists for a function that throws exceptions -->
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
     <!-- Parses and verifies the variable doc comment -->
-    <rule ref="Squiz.Commenting.VariableComment" />
+    <!--<rule ref="Squiz.Commenting.VariableComment" />-->
     <!-- Warns about TODO comments -->
     <rule ref="Generic.Commenting.Todo"/>
     <!-- Warns about TODO comments -->
@@ -109,6 +107,9 @@
     <!-- end of FUNCTIONS -->
 
     <!-- PHP -->
+    <!-- Disallow public non action methods in controller -->
+    <rule ref="Uniplaces.PHP.ControllerFunctions"/>
+    <!-- disallow spec methods -->
     <rule ref="Uniplaces.PHP.ForbiddenFunctions"/>
     <!--Warns about code that can never been executed  -->
     <rule ref="Squiz.PHP.NonExecutableCode"/>
