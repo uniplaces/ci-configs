@@ -46,7 +46,7 @@ Configuration
 
 ### Scrutinizer
 
-In order to get use out of scrutinizer, set a symlink from your applications root folder
+In order to get use our scrutinizer config, set a symlink from your applications root folder
 
 ```
     ln -s ci-configs/src/Uniplaces/Scrutinizer/.scrutinizer.yml
@@ -56,6 +56,9 @@ Our scrutinizer configuration is set to load and invoke all other components lik
 
 ### Phpunit
 
+You can configure your Phpunit to send your coverage reports that need to be in clover format to be sent to scrutinizer
+
+
 In order to use the ScrutinizerCloverListener you have to add a listener to your phpunit.xml file. 
 
 ``` xml
@@ -64,7 +67,14 @@ In order to use the ScrutinizerCloverListener you have to add a listener to your
     </listeners>
 ```
 
+If you want to enable scrutinizer to use external coverage reports you have to be aligned with this:
+
+https://scrutinizer-ci.com/docs/tools/external-code-coverage/
+
 ### PHP_codesniffer
+
+You can use this codesniffer standard independently by following the following configuration commands
+
 
 Make sure that your codesniffer is installed and available in 
 
