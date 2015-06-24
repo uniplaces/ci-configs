@@ -25,8 +25,23 @@
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
     <!-- ensure that arrays conform to the array coding standard -->
     <rule ref="Squiz.Arrays.ArrayDeclaration"/>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.NoCommaAfterLast">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.ValueNotAligned">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.KeyNotAligned">
+        <severity>0</severity>
+    </rule>
     <!-- Bans the use of the PHP long array syntax -->
-    <!--<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>-->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <!-- end of ARRAYS -->
 
     <!-- CLASSES -->
@@ -88,6 +103,10 @@
     <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
     <!-- breaks and cases are aligned correctly according to their parent switch's alignment and enforces other switch formatting -->
     <rule ref="Squiz.ControlStructures.SwitchDeclaration"/>
+    <rule ref="Squiz.ControlStructures.SwitchDeclaration.BreakIndent">
+        <severity>0</severity>
+    </rule>
+
     <!-- end of CONTROL STRUCTURES -->
 
 
@@ -104,6 +123,10 @@
             <property name="allowMultipleArguments" value="false"/>
         </properties>
     </rule>
+    <rule ref="PEAR.Functions.FunctionCallSignature.Indent">
+        <severity>0</severity>
+    </rule>
+
     <!-- end of FUNCTIONS -->
 
     <!-- PHP -->
@@ -123,6 +146,13 @@
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
     <!-- end of PHP -->
 
+    <!-- METHODS -->
+    <rule ref="PSR2.Methods.FunctionCallSignature.Indent">
+        <severity>0</severity>
+    </rule>
+
+    <!-- end of METHODS -->
+
     <!-- STRINGS -->
     <!-- no spaces between the concatenation operator -->
     <rule ref="Squiz.Strings.ConcatenationSpacing"/>
@@ -131,6 +161,10 @@
         <message>Please don't use double quotes in: %s</message>
         <severity>3</severity>
     </rule>
+    <rule ref="Squiz.Strings.ConcatenationSpacing.PaddingFound">
+        <severity>0</severity>
+    </rule>
+
     <!-- end of STRINGS -->
 
     <!-- Files -->
@@ -180,18 +214,6 @@
     <!-- no whitespace proceeds the first content of the file -->
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
     <!-- end of WHITESPACE -->
-
-
-    <!-- FORMATTING -->
-    <!-- Checks alignment of assignments -->
-    <rule ref="Generic.Formatting.MultipleStatementAlignment">
-        <properties>
-            <property name="maxPadding" value="8"/>
-            <property name="ignoreMultiLine" value="true"/>
-            <property name="error" value="true"/>
-        </properties>
-    </rule>
-    <!-- end of FORMATTING -->
 
 
     <!-- SCOPE -->

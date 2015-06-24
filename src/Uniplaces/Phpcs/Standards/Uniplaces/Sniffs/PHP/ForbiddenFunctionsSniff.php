@@ -1,13 +1,12 @@
 <?php
 
 /**
- *
- * Inspired by https://github.com/squizlabs/PHP_CodeSniffer/blob/master/CodeSniffer/Standards/Generic/Sniffs/PHP/ForbiddenFunctionsSniff.php
- *
  * Class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff
  */
+// @codingStandardsIgnoreStart
 class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sniff
 {
+// @codingStandardsIgnoreEnd
 
     /**
      * A list of forbidden functions with their alternatives.
@@ -108,7 +107,7 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
      */
     private function isNonPHPFunction(array $tokens, $prevToken)
     {
-        if (in_array($tokens[$prevToken]['content'], ['->', '::'], true)) {
+        if (in_array($tokens[$prevToken]['content'], ['->', '::'], true) ===  true) {
             return true;
         }
         return false;
@@ -134,9 +133,14 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
         }
 
         list($nsSeparator, $isPHPFunction, $isNonPHPFunction) = $this->getConditions(
-            $phpcsFile, $stackPtr, $tokens, $prevToken, $nextToken);
+            $phpcsFile,
+            $stackPtr,
+            $tokens,
+            $prevToken,
+            $nextToken
+        );
 
-        if ($nsSeparator || (!$isPHPFunction && !$isNonPHPFunction)) {
+        if ($nsSeparator === true || ($isPHPFunction === false && $isNonPHPFunction === false)) {
             return true;
         }
 
@@ -158,7 +162,12 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
         $nsSeparator = $this->isNSSeparator($phpcsFile, $tokens, $prevToken);
         $isNonPHPFunction = $this->isNonPHPFunction($tokens, $prevToken);
         $isPHPFunction = $this->isPHPFunction(
-            $stackPtr, $this->getIgnoreTokenizers(), $tokens, $prevToken, $nextToken);
+            $stackPtr,
+            $this->getIgnoreTokenizers(),
+            $tokens,
+            $prevToken,
+            $nextToken
+        );
 
         return [$nsSeparator, $isPHPFunction, $isNonPHPFunction];
     }
@@ -209,5 +218,4 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
     {
         return $phpcsFile->addError('The use of function %s is forbidden. Use %s instead', $stackPtr, 'Found', $data);
     }
-
 }

@@ -7,8 +7,10 @@
  *
  * Class Uniplaces_Sniffs_Debug_DebugCodeSniff
  */
+// @codingStandardsIgnoreStart
 class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
 {
+// @codingStandardsIgnoreEnd
     /**
      * A list of tokenizers this sniff supports.
      *
@@ -48,16 +50,26 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
         switch ($tokenType) {
             case 'T_STRING':
                 list($error, $stackPtr, $code, $errorData) = $this->handleTString(
-                    $phpcsFile, $stackPtr, $tokens,  $currentToken );
+                    $phpcsFile,
+                    $stackPtr,
+                    $tokens,
+                    $currentToken
+                );
                 break;
+
             case 'T_COMMENT':
                 list($error, $stackPtr, $code, $errorData) = $this->handleTComment(
-                    $stackPtr, $currentToken);
+                    $stackPtr,
+                    $currentToken
+                );
                 break;
+
             default:
+                // not handled
+                break;
         }
 
-        if ($error) {
+        if ($error !== null) {
             return $phpcsFile->addError($error, $stackPtr, $code, $errorData);
         }
 
@@ -73,8 +85,10 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
     private function handleTComment($stackPtr, $currentToken)
     {
         $hasDebugInComment = preg_match_all(
-            '/\b((DebugUtility::)?([x]?debug)|(print_r)|(var_dump))([\s]+)?\(/', $currentToken);
-        if ($hasDebugInComment) {
+            '/\b((DebugUtility::)?([x]?debug)|(print_r)|(var_dump))([\s]+)?\(/',
+            $currentToken
+            );
+        if ($hasDebugInComment !== 0) {
             return [
                 'Its not enough to comment out debug functions calls, they must be removed from code.',
                 $stackPtr,
@@ -100,7 +114,7 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
             return $this->handleDebugToken($phpcsFile, $stackPtr, $tokens, $currentToken);
         }
 
-        if (in_array($currentToken, ['print_r', 'var_dump', 'xdebug'], true)) {
+        if (in_array($currentToken, ['print_r', 'var_dump', 'xdebug'], true) === true) {
             return [
                 'Call to debug function %s() must be removed',
                 $stackPtr,
@@ -133,7 +147,7 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
             ];
         }
 
-        if (in_array($tokens[$previousToken]['content'], ['->', 'class', 'function'], true)) {
+        if (in_array($tokens[$previousToken]['content'], ['->', 'class', 'function'], true) === true) {
             return [null, null, null, null];
         }
 
@@ -144,6 +158,4 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff
             [$currentToken]
         ];
     }
-
-
 }

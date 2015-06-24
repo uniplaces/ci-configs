@@ -95,10 +95,10 @@ Set a symlink to your hooks directory
 ```
 
 
-Register new template directory with git
+If you like you can register your templates globally or locally
 
 ```
-    git config --global init.templatedir '/path/to/your/repository/.git_template'
+    git config [--global] init.templatedir '/path/to/your/repository/.git_template'
 ```
 
 
