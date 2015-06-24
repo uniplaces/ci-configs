@@ -41,7 +41,7 @@
         <severity>0</severity>
     </rule>
     <!-- Bans the use of the PHP long array syntax -->
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <!--<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>-->
     <!-- end of ARRAYS -->
 
     <!-- CLASSES -->
