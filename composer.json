@@ -20,6 +20,6 @@
   },
   "autoload": {
     "psr-0": { "": "src/" },
-    "classmap": ["src/Uniplaces/Phpcs/Uniplaces/"]
+    "classmap": ["src/Uniplaces/Phpcs/Standards/Uniplaces/"]
   }
 }

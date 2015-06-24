@@ -1,0 +1,80 @@
+#!/bin/bash
+# PHP CodeSniffer pre-commit hook for git
+# @author Uniplaces Ltd.
+
+PHPCS_BIN=/usr/bin/phpcs
+PHPCS_CODING_STANDARD=PSR2
+PHPCS_FILE_PATTERN=
+
+#####
+# LOAD CONFIG FILE
+#####
+CONFIG_FILE=$DIR/Phpcs/config
+if [ -e $CONFIG_FILE ]; then
+    . $CONFIG_FILE
+fi
+#####
+
+
+#####
+# CHECK FOR PHPCS
+#####
+if [ ! -x $PHPCS_BIN ]; then
+    echo "PHP CodeSniffer bin not found or executable -> $PHPCS_BIN"
+    exit 1
+fi
+#####
+
+#####
+# RETRIEVE ALL ELIGIBLE FILES
+#####
+if git rev-parse --verify HEAD > /dev/null
+then
+    against=HEAD
+else
+    # retrieve the has of an empty tree, its always the same, unless git changes its constants
+    # see http://git-scm.com/book/en/v2/Git-Internals-Git-Objects#Tree-Objects for further explanation
+    # 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+    against=$(git hash-object -t tree --stdin < /dev/null)
+fi
+
+FILES=$(git diff-index --name-only --cached --diff-filter=ACMR $against -- )
+
+if [ "$FILES" == "" ]; then
+    exit 0
+fi
+#####
+
+
+#####
+# SNIFF ON FILES MATCHING PATTERN ONLY
+#####
+SNIFF_ON_FILES=""
+for FILE in $FILES
+do
+    echo "$FILE" | egrep -q "$PHPCS_FILE_PATTERN"
+    RETVAL=$?
+
+    if [ "$RETVAL" -eq "0" ]
+    then
+        SNIFF_ON_FILES="$SNIFF_ON_FILES $FILE"
+    fi
+done
+
+if [ "$SNIFF_ON_FILES" == "" ]; then
+    exit 0
+fi
+#####
+
+#####
+# SNIFF
+#####
+OUTPUT=$($PHPCS_BIN -s --standard=$PHPCS_CODING_STANDARD $SNIFF_ON_FILES)
+RETVAL=$?
+
+if [ $RETVAL -ne 0 ]; then
+    echo "Can't push your commit due to codingstandard valiation"
+    echo "$OUTPUT" | cat
+fi
+
+exit $RETVAL

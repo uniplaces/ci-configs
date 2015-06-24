@@ -1,0 +1,9 @@
+# PHP CodeSniffer pre-receive hook configuration
+# @author Uniplaces Ltd.
+
+PHPCS_BIN=/usr/bin/phpcs
+
+PHPCS_CODING_STANDARD=$DIR/../../Standards/Uniplaces
+
+PHPCS_FILE_PATTERN="\.(php)$"
+

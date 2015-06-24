@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# @author Uniplaces Ltd.
+
+verifyDir ()
+{
+if [[ ! -d "$DIR" ]]; then
+    echo "$DIR is not a path"
+    exit 1
+fi
+}
+
+DIR=$(dirname $(readlink $0))
+verifyDir $DIR
+
+if [ -L $DIR/pre-commit ]; then
+    DIR=$(dirname $(readlink $DIR/pre-commit))
+fi
+verifyDir $DIR
+
+export DIR
+
+### PHP_CodeSniffer hook ###
+. $DIR/Phpcs/pre-commit
+
+
+
+
