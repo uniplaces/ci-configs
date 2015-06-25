@@ -1,7 +1,19 @@
 <?php
 
 /**
+ * This file is part of Uniplaces ci-configs source.
+ *
+ * (c) Peter Tilsen <peter@uniplaces.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+
+/**
  * Class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff
+ *
+ * @author Peter Tilsen <peter@uniplaces.com>
  */
 // @codingStandardsIgnoreStart
 class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sniff
@@ -116,6 +128,7 @@ class Uniplaces_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Sn
     /**
      * @param PHP_CodeSniffer_File  $phpcsFile
      * @param integer               $stackPtr
+     *
      * @return bool
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)

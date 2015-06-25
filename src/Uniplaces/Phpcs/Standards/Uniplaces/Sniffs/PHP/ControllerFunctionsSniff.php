@@ -1,7 +1,19 @@
 <?php
 
 /**
+ * This file is part of Uniplaces ci-configs source.
+ *
+ * (c) Peter Tilsen <peter@uniplaces.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+
+/**
  * Class Uniplaces_Sniffs_PHP_ControllerFunctionsSniff
+ *
+ * @author Peter Tilsen <peter@uniplaces.com>
  */
 // @codingStandardsIgnoreStart
 class Uniplaces_Sniffs_PHP_ControllerFunctionsSniff implements PHP_CodeSniffer_Sniff
@@ -94,6 +106,7 @@ class Uniplaces_Sniffs_PHP_ControllerFunctionsSniff implements PHP_CodeSniffer_S
      * @param integer   $stackPtr
      * @param array     $tokens
      * @param integer   $nextToken
+     *
      * @return bool
      */
     private function isNonController($stackPtr, array $tokens, $nextToken)
@@ -110,6 +123,7 @@ class Uniplaces_Sniffs_PHP_ControllerFunctionsSniff implements PHP_CodeSniffer_S
      * @param integer   $stackPtr
      * @param array     $tokens
      * @param integer   $nextToken
+     *
      * @return bool
      */
     private function isController($stackPtr, array $tokens, $nextToken)

@@ -64,6 +64,10 @@ In order to use the ScrutinizerCloverListener you have to add a listener to your
 ``` xml
     <listeners>
         <listener class="\Uniplaces\Phpunit\ScrutinizerCloverListener" file="ci-configs/src/Uniplaces/Phpunit/ScrutinizerCloverListener.php"/>
+            <arguments>
+                <string>../../doc/clover.xml</string>
+                <string>my api token</string>
+            </arguments>
     </listeners>
 ```
 

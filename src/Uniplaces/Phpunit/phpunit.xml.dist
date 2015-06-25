@@ -6,6 +6,7 @@
         <listener class="\Uniplaces\Phpunit\ScrutinizerCloverListener" file="ci-configs/src/Uniplaces/Phpunit/ScrutinizerCloverListener.php">
             <arguments>
                 <string>../../doc/clover.xml</string>
+                <string>my api token</string>
             </arguments>
         </listener>
     </listeners>

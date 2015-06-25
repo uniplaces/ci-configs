@@ -1,16 +1,24 @@
 <?php
 
-/** @noinspection PhpIllegalPsrClassPathInspection */
+/**
+ * This file is part of Uniplaces ci-configs source.
+ *
+ * (c) Peter Tilsen <peter@uniplaces.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Uniplaces\Tests\Phpunit;
 
 use PHPUnit_Framework_TestCase;
-
 use Mockery;
 use Uniplaces\Phpunit\ScrutinizerCloverListener;
 
 /**
  * Class ScrutinizerCloverListenerTest
- * @package phpunit
+ *
+ * @author Peter Tilsen <peter@uniplaces.com>
  */
 class ScrutinizerCloverListenerTest extends PHPUnit_Framework_TestCase
 {

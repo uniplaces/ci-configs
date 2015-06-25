@@ -1,11 +1,23 @@
 <?php
 
 /**
+ * This file is part of Uniplaces ci-configs source.
+ *
+ * (c) Peter Tilsen <peter@uniplaces.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+
+/**
  * Checks code for forbidden occurence of debug methods
  *
  * Inspired by https://github.com/typo3-ci/TYPO3SniffPool/blob/develop/Sniffs/Debug/DebugCodeSniff.php
  *
  * Class Uniplaces_Sniffs_Debug_DebugCodeSniff
+ *
+ * @author Peter Tilsen <peter@uniplaces.com>
  */
 // @codingStandardsIgnoreStart
 class Uniplaces_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff

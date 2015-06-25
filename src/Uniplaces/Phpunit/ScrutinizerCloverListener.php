@@ -1,12 +1,23 @@
 <?php
 
+/**
+ * This file is part of Uniplaces ci-configs source.
+ *
+ * (c) Peter Tilsen <peter@uniplaces.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+
 namespace Uniplaces\Phpunit;
 
 use Symfony\Component\Process\Process;
 
 /**
  * Class ScrutinizerCloverListener
- * @package Uniplaces
+ *
+ * @author Peter Tilsen <peter@uniplaces.com>
  */
 class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
 {
@@ -14,19 +25,26 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
     const OCULAR_PHAR = 'ocular.phar';
     const OCULAR_HOST = 'https://scrutinizer-ci.com';
     const INSTALL_DIR = '/tmp';
-    const SCRUTINIZER_API_TOKEN = '7c8ad0ef7f0a42323cee76eaaf9da7a7339acd24b23ccd09a1dbe2f1c5fbcaa9';
+    const API_TOKEN = 'my api token';
+    const COVERAGE_CLOVER = 'clover.xml';
 
     /**
      * @var string
      */
-    protected $coverageClover = '';
+    protected $coverageClover = null;
+
+    /**
+     * @var string
+     */
+    protected $apiToken = null;
 
     /**
      * @param string $coverageClover
      */
-    public function __construct($coverageClover = null)
+    public function __construct($coverageClover = null, $apiToken = null)
     {
-        $this->coverageClover = ($coverageClover !== null) ? $coverageClover : 'clover.xml';
+        $this->coverageClover = ($coverageClover !== null) ? $coverageClover : self::COVERAGE_CLOVER;
+        $this->apiToken = ($apiToken !== null) ? $apiToken : self::API_TOKEN;
     }
 
     /**
@@ -58,7 +76,7 @@ class ScrutinizerCloverListener extends \PHPUnit_Framework_BaseTestListener
     protected function uploadCloverReport($coverageClover)
     {
         $process ='php ' . self::INSTALL_DIR . DIRECTORY_SEPARATOR . self::OCULAR_PHAR
-            . ' code-coverage:upload --access-token="' . self::SCRUTINIZER_API_TOKEN . '" --format=php-clover '
+            . ' code-coverage:upload --access-token="' . $this->apiToken . '" --format=php-clover '
             . __DIR__ . DIRECTORY_SEPARATOR . $coverageClover;
 
         return $this->process($process);
