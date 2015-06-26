@@ -18,6 +18,7 @@ filter:
 build:
     environment:
         php: '5.4.10'
+        node: '0.11.13'
     dependencies:
         before:
             - "npm install -g dynalite"
@@ -29,6 +30,9 @@ build:
             - "cp app/config/parameters.yml.dist app/config/parameters.yml && composer install --dev --prefer-source"
         override:
             - true
+    cache:
+        directories:
+            - 'src/'
     tests:
         override:
             -
