@@ -43,7 +43,8 @@ build:
     tests:
         override:
             -
-                command: php -d memory_limit=256M bin/phpunit --coverage-clover=uniplaces -c app
+                command: "if [[ ! -d '/home/scrutinizer/build/app' ]]; then php -d memory_limit=500M bin/phpunit --coverage-clover=uniplaces; else php -d memory_limit=500M bin/phpunit --coverage-clover=uniplaces -c app; fi"
+                idle_timeout: 600
                 coverage:
                     file: uniplaces
                     format: php-clover
