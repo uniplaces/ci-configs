@@ -21,13 +21,20 @@ build:
         node: '0.11.13'
     dependencies:
         before:
-            - "npm install -g dynalite"
+            -
+                command: "npm install -g dynalite"
+                idle_timeout: 600
             - "dynalite --createTableMs 10 --deleteTableMs 10 --updateTableMs 10 &"
             - "sleep 5"
             - "echo \"memory_limit = 1024M\" > ~/.phpenv/versions/$(phpenv global)/etc/conf.d/memory.ini"
             - "echo \"xdebug.max_nesting_level = 1000\" >> ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini"
             - "sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini"
-            - "cp app/config/parameters.yml.dist app/config/parameters.yml && composer install --dev --prefer-source"
+            -
+                command: "cp app/config/parameters.yml.dist app/config/parameters.yml"
+                only_if: 'test -e app/config/parameters.yml.dist'
+            -
+                command: "composer install --dev --prefer-source"
+                idle_timeout: 600
         override:
             - true
     cache:
