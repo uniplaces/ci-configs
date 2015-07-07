@@ -105,7 +105,7 @@ Create your hooks directory
 Set a symlink to your hooks directory
 
 ```
-    cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/Phpcs/GitHooks/PreCommit/pre-commit
+    cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PreCommit/pre-commit
 ```
 
 
@@ -114,6 +114,32 @@ If you like you can register your templates globally or locally
 ```
     git config [--global] init.templatedir '/path/to/your/repository/.git_template'
 ```
+
+CircleCi
+---------
+
+In order to add an additional check for circle ci related aspects you can use our git prepare-commit-msg hook.
+We do currently support a check for [ci skip] command only.
+
+Create your hooks directory
+
+```
+    /path/to/your/repository/.git_template/hooks
+```
+
+Set a symlink to your hooks directory
+
+```
+    cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PrepareCommitMsg/prepare-commit-msg
+```
+
+
+If you like you can register your templates globally or locally
+
+```
+    git config [--global] init.templatedir '/path/to/your/repository/.git_template'
+```
+
 
 
 Troubleshooting
