@@ -49,7 +49,7 @@ Configuration
 In order to get use our scrutinizer config, set a symlink from your applications root folder
 
 ```
-    ln -s ci-configs/src/Uniplaces/Scrutinizer/.scrutinizer.yml
+ln -s ci-configs/src/Uniplaces/Scrutinizer/.scrutinizer.yml
 ```
 
 Our scrutinizer configuration is set to load and invoke all other components like PHP_codesniffer and Php mess detector
@@ -83,13 +83,13 @@ You can use this codesniffer standard independently by following the following c
 Make sure that your codesniffer is installed and available in 
 
 ```
-    /usr/bin/phpcs
+/usr/bin/phpcs
 ```
 
 If this is not the case and you would like to use the pre-commit hook, please edit your PHP_codesniffer config file 
 
 ```
-    ci-configs/src/Uniplaces/Phpcs/GitHooks/PreCommit/Phpcs/config
+ci-configs/src/Uniplaces/Phpcs/GitHooks/PreCommit/Phpcs/config
 ```
 
 In order to use PHP_codesniffer with a git pre-commit hook you have to register it within your git repository. 
@@ -99,20 +99,20 @@ you can easily provide a hook directory within your repository. Create your hook
 Create your hooks directory
 
 ```
-    /path/to/your/repository/.git_template/hooks
+/path/to/your/repository/.git_template/hooks
 ```
 
 Set a symlink to your hooks directory
 
 ```
-    cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PreCommit/pre-commit
+cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PreCommit/pre-commit
 ```
 
 
 If you like you can register your templates globally or locally
 
 ```
-    git config [--global] init.templatedir '/path/to/your/repository/.git_template'
+git config [--global] init.templatedir '/path/to/your/repository/.git_template'
 ```
 
 CircleCi
@@ -124,20 +124,20 @@ We do currently support a check for [ci skip] command only.
 Create your hooks directory
 
 ```
-    /path/to/your/repository/.git_template/hooks
+/path/to/your/repository/.git_template/hooks
 ```
 
 Set a symlink to your hooks directory
 
 ```
-    cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PrepareCommitMsg/prepare-commit-msg
+cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PrepareCommitMsg/prepare-commit-msg
 ```
 
 
 If you like you can register your templates globally or locally
 
 ```
-    git config [--global] init.templatedir '/path/to/your/repository/.git_template'
+git config [--global] init.templatedir '/path/to/your/repository/.git_template'
 ```
 
 
