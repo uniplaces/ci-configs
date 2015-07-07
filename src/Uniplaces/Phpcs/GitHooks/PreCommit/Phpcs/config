@@ -1,4 +1,4 @@
-# PHP CodeSniffer pre-receive hook configuration
+# PHP CodeSniffer pre-commit hook configuration
 # @author Uniplaces Ltd.
 
 PHPCS_BIN=/usr/bin/phpcs

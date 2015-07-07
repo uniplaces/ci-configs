@@ -1,0 +1,32 @@
+#!/bin/bash
+# Circleci prepare-commit-msg hook for git
+# @author Uniplaces Ltd.
+
+#####
+# exit if skip ci is existent
+#####
+if grep -q '\[ci skip\]' $1; then
+    exit
+fi
+
+#####
+# Ask for adding the skip command on commit
+####
+exec < /dev/tty
+
+while true; do
+
+  read -p "Do you want to add ci skip in order to skip circleci test execution? (N/y) " yn
+  if [ "$yn" = "" ]; then
+    yn='N'
+  fi
+
+  case $yn in
+      [Yy] ) sed -i.bak -e "s/$/ [ci skip]/" $1; break;;
+      [Nn] ) break;;
+      * ) echo "Please answer y or n for yes or no.";;
+  esac
+
+done
+
+exec <&-

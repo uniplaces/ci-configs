@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# @author Uniplaces Ltd.
+
+verifyDir ()
+{
+if [[ ! -d "$DIR" ]]; then
+    echo "$DIR is not a path"
+    exit 1
+fi
+}
+
+DIR=$(dirname $(readlink $0))
+verifyDir $DIR
+
+if [ -L $DIR/prepare-commit-msg ]; then
+    DIR=$(dirname $(readlink $DIR/prepare-commit-msg))
+fi
+verifyDir $DIR
+
+export DIR
+
+### Circleci hook ###
+. $DIR/Circleci/prepare-commit-msg
+
+
+
+
