@@ -99,13 +99,13 @@ you can easily provide a hook directory within your repository. Create your hook
 Create your hooks directory
 
 ```
-/path/to/your/repository/.git_template/hooks
+mkdir -p /path/to/your/repository/.git_template/hooks
 ```
 
 Set a symlink to your hooks directory
 
 ```
-cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PreCommit/pre-commit
+ln -s /path/to/ci-configs/src/Uniplaces/GitHooks/PreCommit/pre-commit .git_template/hooks/
 ```
 
 
@@ -124,15 +124,14 @@ We do currently support a check for [ci skip] command only.
 Create your hooks directory
 
 ```
-/path/to/your/repository/.git_template/hooks
+mkdir -p /path/to/your/repository/.git_template/hooks
 ```
 
 Set a symlink to your hooks directory
 
 ```
-cd /path/to/your/repostitory/.git_template/hooks && ln -s /path/to/your/repository/ci-configs/src/Uniplaces/GitHooks/PrepareCommitMsg/prepare-commit-msg
+ln -s /path/to/ci-configs/src/Uniplaces/GitHooks/PrepareCommitMsg/prepare-commit-msg .git_template/hooks/
 ```
-
 
 If you like you can register your templates globally or locally
 
