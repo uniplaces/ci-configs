@@ -2,6 +2,36 @@
 # PHP CodeSniffer pre-commit hook for git
 # @author Uniplaces Ltd.
 
+####
+# Ask for skip and continue commit
+####
+function askForSkip ()
+{
+
+exec < /dev/tty
+
+while true; do
+
+  read -p "Do you want to continue without changing? (N/y) " yn
+  if [ "$yn" = "" ]; then
+    yn='N'
+  fi
+
+  case $yn in
+      [Yy] ) exit 0;;
+      [Nn] ) break;;
+      * ) echo "Please answer y or n for yes or no.";;
+  esac
+
+done
+
+exec <&-
+
+
+}
+
+
+
 PHPCS_BIN=/usr/bin/phpcs
 PHPCS_CODING_STANDARD=PSR2
 PHPCS_FILE_PATTERN=
@@ -75,6 +105,7 @@ RETVAL=$?
 if [ $RETVAL -ne 0 ]; then
     echo "Can't push your commit due to codingstandard valiation"
     echo "$OUTPUT" | cat
+    askForSkip
 fi
 
 exit $RETVAL
