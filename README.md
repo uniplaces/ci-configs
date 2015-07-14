@@ -33,12 +33,12 @@ This repository is dependent on symfony bundles, it requires you to first run [c
         ...
         {
             "type": "vcs",
-            "url": "git@github.com:uniplaces/ci-config.git"
+            "url": "git@github.com:uniplaces/ci-configs.git"
         }
     ]
 ```
 
-You can load this repository as a submodule and symlink your desired yml and configuration files from your root folder.
+Alternatively you can load this repository as a git submodule and symlink your desired yml and configuration files from your root folder.
 
 
 Configuration
