@@ -4,9 +4,19 @@
 
 verifyDir ()
 {
+prepareDir $DIR
+
 if [[ ! -d "$DIR" ]]; then
     echo "$DIR is not a path"
+    pwd
     exit 1
+fi
+}
+
+prepareDir ()
+{
+if [[ ! "$DIR" = /*  ]]; then
+    DIR=${DIR//..\//}
 fi
 }
 
@@ -15,8 +25,8 @@ verifyDir $DIR
 
 if [ -L $DIR/pre-commit ]; then
     DIR=$(dirname $(readlink $DIR/pre-commit))
+    verifyDir $DIR
 fi
-verifyDir $DIR
 
 export DIR
 

@@ -105,14 +105,14 @@ mkdir -p /path/to/your/repository/.git_template/hooks
 Set a symlink to your hooks directory
 
 ```
-ln -s /path/to/ci-configs/src/Uniplaces/GitHooks/PreCommit/pre-commit .git_template/hooks/
+ln -s /path/to/ci-configs/src/Uniplaces/GitHooks/PreCommit/pre-commit /path/to/your/repository/.git_template/hooks/
 ```
 
 
 If you like you can register your templates globally or locally
 
 ```
-git config [--global] init.templatedir '/path/to/your/repository/.git_template'
+git config [--global] init.templatedir '/path/to/your/repository/.git_template' && git init
 ```
 
 CircleCi
@@ -130,13 +130,13 @@ mkdir -p /path/to/your/repository/.git_template/hooks
 Set a symlink to your hooks directory
 
 ```
-ln -s /path/to/ci-configs/src/Uniplaces/GitHooks/PrepareCommitMsg/prepare-commit-msg .git_template/hooks/
+ln -s /path/to/ci-configs/src/Uniplaces/GitHooks/PrepareCommitMsg/prepare-commit-msg /path/to/your/repository/.git_template/hooks/
 ```
 
 If you like you can register your templates globally or locally
 
 ```
-git config [--global] init.templatedir '/path/to/your/repository/.git_template'
+git config [--global] init.templatedir '/path/to/your/repository/.git_template' && git init
 ```
 
 

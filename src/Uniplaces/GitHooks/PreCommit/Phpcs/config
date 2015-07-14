@@ -3,7 +3,7 @@
 
 PHPCS_BIN=/usr/bin/phpcs
 
-PHPCS_CODING_STANDARD=$DIR/../../Standards/Uniplaces
+PHPCS_CODING_STANDARD=$DIR/../../Phpcs/Standards/Uniplaces
 
 PHPCS_FILE_PATTERN="\.(php)$"
 
