@@ -63,8 +63,17 @@
 
     <!-- CODE SIZE RULES-->
     <!-- see http://phpmd.org/rules/codesize.html -->
-    <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity" />
-    <rule ref="rulesets/codesize.xml/CyclomaticComplexity" />
+    <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity" >
+        <properties>
+            <property name="maximum" value="80" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/codesize.xml/CyclomaticComplexity" >
+        <properties>
+            <property name="reportLevel" value="50" />
+        </properties>
+    </rule>
     <rule ref="rulesets/codesize.xml/NPathComplexity" />
     <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
         <properties>
