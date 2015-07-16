@@ -197,7 +197,7 @@
 
     <!-- OPERATORS -->
     <!-- The use of === true is enforced over implicit true statements -->
-    <rule ref="Squiz.Operators.ComparisonOperatorUsage"/>
+    <!--<rule ref="Squiz.Operators.ComparisonOperatorUsage"/>-->
     <!-- Use the && and || operators -->
     <rule ref="Squiz.Operators.ValidLogicalOperators"/>
     <!-- end of OPERATORS -->
