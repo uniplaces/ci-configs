@@ -43,7 +43,7 @@
     <!-- see http://phpmd.org/rules/naming.html -->
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
-            <property name="exceptions" value="i,j,k,cnt"/>
+            <property name="exceptions" value="id,i,j,k,cnt"/>
         </properties>
     </rule>
     <rule ref="rulesets/naming.xml/LongVariable">
