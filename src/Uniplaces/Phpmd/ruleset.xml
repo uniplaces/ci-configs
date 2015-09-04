@@ -41,11 +41,15 @@
 
     <!-- NAMING RULES -->
     <!-- see http://phpmd.org/rules/naming.html -->
-    <rule ref="rulesets/naming.xml/ShortVariable" />
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="i,j,k,cnt"/>
+        </properties>
+    </rule>
     <rule ref="rulesets/naming.xml/LongVariable">
         <priority>5</priority>
         <properties>
-            <property name="maximum" value="30" />
+            <property name="maximum" value="40" />
         </properties>
     </rule>
     <rule ref="rulesets/naming.xml/ShortMethodName" />
@@ -58,6 +62,11 @@
 
     <!-- CONTROVERSIAl RULES-->
     <!-- see http://phpmd.org/rules/controversial.html -->
+    <rule ref="rulesets/controversial.xml/CamelCaseClassName" />
+    <rule ref="rulesets/controversial.xml/CamelCasePropertyName" />
+    <rule ref="rulesets/controversial.xml/CamelCaseMethodName" />
+    <rule ref="rulesets/controversial.xml/CamelCaseParameterName" />
+    <rule ref="rulesets/controversial.xml/CamelCaseVariableName" />
     <rule ref="rulesets/controversial.xml/Superglobals" />
     <!-- end of CONTROVERSIAl RULES-->
 
@@ -74,7 +83,11 @@
             <property name="reportLevel" value="50" />
         </properties>
     </rule>
-    <rule ref="rulesets/codesize.xml/NPathComplexity" />
+    <rule ref="rulesets/codesize.xml/NPathComplexity">
+        <properties>
+            <property name="minimum" value="100"/>
+        </properties>
+    </rule>
     <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
         <properties>
             <property name="ignore-whitespace" value="true" />
@@ -89,7 +102,7 @@
     <rule ref="rulesets/codesize.xml/ExcessiveParameterList">
         <priority>2</priority>
         <properties>
-            <property name="minimum" value="5" />
+            <property name="minimum" value="10" />
         </properties>
     </rule>
     <rule ref="rulesets/codesize.xml/ExcessivePublicCount">
