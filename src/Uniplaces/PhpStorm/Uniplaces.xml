@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inspections version="1.0">
+  <option name="myName" value="Uniplaces" />
+  <inspection_tool class="BladeClosingSection" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="BladeControlDirectives" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="ClassMethodNameMatchesFieldNameInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CoffeeScriptInfiniteLoop" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CoffeeScriptSillyAssignment" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CoffeeScriptSwitchStatementWithNoDefaultBranch" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CoffeeScriptUnusedLocalSymbols" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssFloatPxLength" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidAtRule" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidCharsetRule" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidElement" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidFunction" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidHtmlTagReference" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidImport" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidMediaFeature" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidPropertyValue" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssInvalidPseudoSelector" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssNegativeValue" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssNoGenericFontName" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssOptimizeSimilarProperties" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssOverwrittenProperties" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssRedundantUnit" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssUnitlessNumber" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CssUnknownProperty" enabled="false" level="WARNING" enabled_by_default="false">
+    <option name="myCustomPropertiesEnabled" value="false" />
+    <option name="myIgnoreVendorSpecificProperties" value="false" />
+    <option name="myCustomPropertiesList">
+      <value>
+        <list size="0" />
+      </value>
+    </option>
+  </inspection_tool>
+  <inspection_tool class="CssUnknownTarget" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CssUnusedSymbol" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CucumberExamplesColon" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CucumberMissedExamples" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="CucumberTableInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="CucumberUndefinedStep" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="GherkinBrokenTableInspection" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="GherkinMisplacedBackground" enabled="false" level="ERROR" enabled_by_default="false" />
+  <inspection_tool class="HtmlNonExistentInternetResource" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="InconsistentLineSeparators" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="MessDetectorValidationInspection" enabled="true" level="ERROR" enabled_by_default="true">
+    <option name="customRulesets">
+      <list>
+        <RulesetDescriptor>
+          <option name="name" value="Uniplaces" />
+          <option name="path" value="~/ci-configs/src/Uniplaces/Phpmd/ruleset.xml" />
+        </RulesetDescriptor>
+      </list>
+    </option>
+  </inspection_tool>
+  <inspection_tool class="PhpAssignmentInConditionInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpCSValidationInspection" enabled="true" level="ERROR" enabled_by_default="true">
+    <option name="CODING_STANDARD" value="Custom" />
+    <option name="CUSTOM_RULESET_PATH" value="~/ci-configs/src/Uniplaces/Phpcs/Standards/Uniplaces" />
+    <option name="SHOW_SNIFF_NAMES" value="true" />
+  </inspection_tool>
+  <inspection_tool class="PhpDivisionByZeroInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpIllegalPsrClassPathInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMethodOrClassCallIsNotCaseSensitiveInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMissingDocCommentInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMissingParentCallCommonInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMissingParentCallMagicInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpMultipleClassesDeclarationsInOneFile" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpTooManyParametersInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpTraditionalSyntaxArrayLiteralInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUndefinedCallbackInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="PhpUsageOfSilenceOperatorInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="SSBasedInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="StaticInvocationViaThisInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+  <inspection_tool class="UnusedDefine" enabled="true" level="WARNING" enabled_by_default="true" />
+</inspections>
+
