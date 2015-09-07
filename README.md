@@ -86,13 +86,13 @@ Make sure that your codesniffer is installed and available in
 /usr/bin/phpcs
 ```
 
-If this is not the case and you would like to use the pre-commit hook, please edit your PHP_codesniffer config file 
+If this is not the case and you would like to use the pre-commit hook, please edit your PHP_codesniffer config file in order to point your phpcs bin installation path
 
 ```
-ci-configs/src/Uniplaces/Phpcs/GitHooks/PreCommit/Phpcs/config
+/path/to/ci-configs/src/Uniplaces/Phpcs/GitHooks/PreCommit/Phpcs/config
 ```
 
-In order to use PHP_codesniffer with a git pre-commit hook you have to register it within your git repository. 
+In order to use PHP_codesniffer with a git pre-commit hook you have to **register** it within your git repository. 
 You can change your templatedir configuration to point to another directory than the predefined one. By doing this,
 you can easily provide a hook directory within your repository. Create your hook directory and register the templatedir
 
