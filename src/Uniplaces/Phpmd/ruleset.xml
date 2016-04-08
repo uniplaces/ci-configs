@@ -43,7 +43,7 @@
     <!-- see http://phpmd.org/rules/naming.html -->
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
-            <property name="exceptions" value="id,a,s,r,e,i,j,k,cnt,by,at,to,in"/>
+            <property name="exceptions" value="id,a,s,r,e,i,j,k,cnt,by,at,to,in,on,en,pt,de,a,b,no"/>
         </properties>
     </rule>
     <rule ref="rulesets/naming.xml/LongVariable">
@@ -54,7 +54,7 @@
     </rule>
     <rule ref="rulesets/naming.xml/ShortMethodName">
         <properties>
-            <property name="exceptions" value="id,by,at,to,in"/>
+            <property name="exceptions" value="id,by,at,to,in,on,en,pt,de,no"/>
         </properties>
     </rule>
     <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass"/>
