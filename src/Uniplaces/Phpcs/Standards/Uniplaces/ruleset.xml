@@ -67,11 +67,11 @@
     <!-- Parses and verifies the doc comments for functions -->
     <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
     <!-- Parses and verifies the class doc comment -->
-    <rule ref="Squiz.Commenting.ClassComment" />
+    <rule ref="Squiz.Commenting.ClassComment"/>
     <!-- stars in a doc comment align correctly -->
-    <rule ref="Squiz.Commenting.DocCommentAlignment" />
+    <rule ref="Squiz.Commenting.DocCommentAlignment"/>
     <!-- @throws tag exists for a function that throws exceptions -->
-    <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
+    <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
     <!-- Parses and verifies the variable doc comment -->
     <!--<rule ref="Squiz.Commenting.VariableComment" />-->
     <!-- Warns about TODO comments -->
@@ -106,7 +106,6 @@
     <rule ref="Squiz.ControlStructures.SwitchDeclaration.BreakIndent">
         <severity>0</severity>
     </rule>
-
     <!-- end of CONTROL STRUCTURES -->
 
 
@@ -150,7 +149,6 @@
     <rule ref="PSR2.Methods.FunctionCallSignature.Indent">
         <severity>0</severity>
     </rule>
-
     <!-- end of METHODS -->
 
     <!-- STRINGS -->
@@ -164,7 +162,6 @@
     <rule ref="Squiz.Strings.ConcatenationSpacing.PaddingFound">
         <severity>0</severity>
     </rule>
-
     <!-- end of STRINGS -->
 
     <!-- Files -->
