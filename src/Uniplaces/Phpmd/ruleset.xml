@@ -20,13 +20,13 @@
     <rule ref="rulesets/design.xml/DepthOfInheritance">
         <priority>5</priority>
         <properties>
-            <property name="minimum" value="5"/>
+            <property name="minimum" value="6"/>
         </properties>
     </rule>
     <rule ref="rulesets/design.xml/CouplingBetweenObjects">
         <priority>5</priority>
         <properties>
-            <property name="minimum" value="50"/>
+            <property name="minimum" value="80"/>
         </properties>
     </rule>
     <!-- end of DESIGN RULES -->
@@ -43,7 +43,7 @@
     <!-- see http://phpmd.org/rules/naming.html -->
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
-            <property name="exceptions" value="id,a,s,r,e,i,j,k,cnt,by,at,to,in"/>
+            <property name="exceptions" value="id,a,s,r,e,i,j,k,cnt,by,at,to,in,on,en,pt,de,a,b,no"/>
         </properties>
     </rule>
     <rule ref="rulesets/naming.xml/LongVariable">
@@ -54,7 +54,7 @@
     </rule>
     <rule ref="rulesets/naming.xml/ShortMethodName">
         <properties>
-            <property name="exceptions" value="id,by,at,to,in"/>
+            <property name="exceptions" value="id,by,at,to,in,on,en,pt,de,no"/>
         </properties>
     </rule>
     <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass"/>
@@ -78,23 +78,23 @@
     <!-- see http://phpmd.org/rules/codesize.html -->
     <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity">
         <properties>
-            <property name="maximum" value="90"/>
+            <property name="maximum" value="150"/>
         </properties>
     </rule>
 
     <rule ref="rulesets/codesize.xml/CyclomaticComplexity">
         <properties>
-            <property name="reportLevel" value="80"/>
+            <property name="reportLevel" value="100"/>
         </properties>
     </rule>
     <rule ref="rulesets/codesize.xml/NPathComplexity">
         <properties>
-            <property name="minimum" value="280"/>
+            <property name="minimum" value="350"/>
         </properties>
     </rule>
     <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
         <properties>
-            <property name="minimum" value="220"/>
+            <property name="minimum" value="280"/>
             <property name="ignore-whitespace" value="true"/>
         </properties>
     </rule>
@@ -113,19 +113,19 @@
     <rule ref="rulesets/codesize.xml/ExcessivePublicCount">
         <priority>2</priority>
         <properties>
-            <property name="minimum" value="20"/>
+            <property name="minimum" value="25"/>
         </properties>
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyFields">
         <priority>4</priority>
         <properties>
-            <property name="maxfields" value="30"/>
+            <property name="maxfields" value="35"/>
         </properties>
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyMethods">
         <priority>3</priority>
         <properties>
-            <property name="maxmethods" value="30"/>
+            <property name="maxmethods" value="35"/>
         </properties>
     </rule>
     <!-- end of CODE SIZE RULES -->
