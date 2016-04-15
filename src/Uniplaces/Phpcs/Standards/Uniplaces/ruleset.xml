@@ -5,10 +5,10 @@
 
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>cache/*</exclude-pattern>
-    <exclude-pattern>tests/*</exclude-pattern>
-    <exclude-pattern>Tests/*</exclude-pattern>
+    <!-- <exclude-pattern>tests/*</exclude-pattern> -->
+    <!-- <exclude-pattern>Tests/*</exclude-pattern> -->
     <exclude-pattern>bin/*</exclude-pattern>
-    <exclude-pattern>tmp/*</exclude-pattern>
+    <!-- <exclude-pattern>tmp/*</exclude-pattern> -->
     <exclude-pattern>vagrant/*</exclude-pattern>
     <exclude-pattern>resources/*</exclude-pattern>
     <exclude-pattern>config/*</exclude-pattern>
@@ -62,7 +62,6 @@
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
     <!-- endo of CODE ANALYSIS-->
 
-
     <!-- COMMENTING -->
     <!-- Parses and verifies the doc comments for functions -->
     <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
@@ -107,7 +106,6 @@
         <severity>0</severity>
     </rule>
     <!-- end of CONTROL STRUCTURES -->
-
 
     <!-- FUNCTIONS -->
     <!-- arguments in function declarations are spaced correctly -->
@@ -212,7 +210,6 @@
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
     <!-- end of WHITESPACE -->
 
-
     <!-- SCOPE -->
     <!-- class members have scope modifiers -->
     <rule ref="Squiz.Scope.MemberVarScope"/>
@@ -221,7 +218,6 @@
     <!-- usage of "$this" in static methods -->
     <rule ref="Squiz.Scope.StaticThisUsage"/>
     <!-- end of SCOPE -->
-
 
     <!--
        There is a special internal error message produced by PHP_CodeSniffer
