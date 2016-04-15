@@ -40,6 +40,9 @@
     <rule ref="Squiz.Arrays.ArrayDeclaration.KeyNotAligned">
         <severity>0</severity>
     </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
     <!-- Bans the use of the PHP long array syntax -->
     <!--<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>-->
     <!-- end of ARRAYS -->
@@ -63,6 +66,10 @@
     <!-- endo of CODE ANALYSIS-->
 
     <!-- COMMENTING -->
+    <rule ref="Uniplaces.PHP.FunctionComment"/>
+    <rule ref="Uniplaces.PHP.FunctionComment.MissingParamComment">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
     <!-- Parses and verifies the doc comments for functions -->
     <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
     <!-- Parses and verifies the class doc comment -->
@@ -107,6 +114,12 @@
     <rule ref="Squiz.ControlStructures.SwitchDeclaration"/>
     <rule ref="Squiz.ControlStructures.SwitchDeclaration.BreakIndent">
         <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.ControlStructures.SwitchDeclaration.SpacingAfterBreak">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.ControlStructures.SwitchDeclaration.MissingDefault">
+        <exclude-pattern>*</exclude-pattern>
     </rule>
     <!-- end of CONTROL STRUCTURES -->
 
