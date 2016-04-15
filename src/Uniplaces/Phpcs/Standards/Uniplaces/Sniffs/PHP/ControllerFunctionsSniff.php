@@ -55,7 +55,8 @@ class Uniplaces_Sniffs_PHP_ControllerFunctionsSniff implements PHP_CodeSniffer_S
         $this->toggleIsController($this->isController($stackPtr, $tokens, $nextToken));
         $this->toggleIsNonController($this->isNonController($stackPtr, $tokens, $nextToken));
 
-        if ($this->isForbiddenFunction($stackPtr, $tokens, $prevToken) === false) {
+        $isForbiddenFunction = $this->isForbiddenFunction($stackPtr, $tokens, $prevToken) === false;
+        if ($isForbiddenFunction || !strpos(__CLASS__, 'Test')) {
             return true;
         }
 
