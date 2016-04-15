@@ -66,7 +66,10 @@
     <!-- Parses and verifies the doc comments for functions -->
     <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
     <!-- Parses and verifies the class doc comment -->
-    <rule ref="Squiz.Commenting.ClassComment"/>
+    <rule ref="Squiz.Commenting.ClassComment">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
+    <rule ref="Uniplaces.PHP.ClassComment"/>
     <!-- stars in a doc comment align correctly -->
     <rule ref="Squiz.Commenting.DocCommentAlignment"/>
     <!-- @throws tag exists for a function that throws exceptions -->
