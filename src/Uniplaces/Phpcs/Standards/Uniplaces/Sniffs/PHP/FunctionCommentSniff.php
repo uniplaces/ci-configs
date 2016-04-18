@@ -76,12 +76,12 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
      */
     protected function processReturn(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $commentStart)
     {
-        if ($this->isInheritDoc($phpcsFile, $stackPtr)) {
-            return;
-        }
+        $tokens = $phpcsFile->getTokens();
+
+        $isInheritdoc = $this->isInheritDoc($phpcsFile, $stackPtr);
 
         // Only check for a return comment if a non-void return statement exists
-        if (isset($tokens[$stackPtr]['scope_opener'])) {
+        if (isset($tokens[$stackPtr]['scope_opener']) || $isInheritdoc) {
             // Start inside the function
             $start = $phpcsFile->findNext(
                 T_OPEN_CURLY_BRACKET,
@@ -99,11 +99,29 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                 if ($tokens[$i]['code'] === T_RETURN
                     && $this->isMatchingReturn($tokens, $i)
                 ) {
-                    $tokens = $phpcsFile->getTokens();
+                    $methodName = $phpcsFile->getDeclarationName($stackPtr);
 
                     // Skip constructor and destructor.
-                    $methodName = $phpcsFile->getDeclarationName($stackPtr);
-                    $isSpecialMethod = ($methodName === '__construct' || $methodName === '__destruct');
+                    if ($methodName === '__construct' || $methodName === '__destruct') {
+                        return;
+                    }
+
+                    // verify if a return type hint is present when a return statement exists
+                    if ($isInheritdoc) {
+                        // If return type is not void, there needs to be a return statement
+                        // somewhere in the function that returns something.
+                        if (isset($tokens[$stackPtr]['scope_closer']) === true) {
+                            $endToken = $tokens[$stackPtr]['scope_closer'];
+                            $returnToken = $phpcsFile->findNext([T_RETURN], $stackPtr, $endToken);
+                            $returnHint = $phpcsFile->findNext([T_RETURN_TYPE], $stackPtr);
+                            if ($returnToken !== false && $returnHint === false) {
+                                $warning = 'Function return type hint is missing?';
+                                $phpcsFile->addWarning($warning, $tokens[$stackPtr]['scope_opener'], 'MissingReturnTypeHintWithInheritdoc');
+                            }
+                        }
+
+                        return;
+                    }
 
                     $return = null;
                     foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
@@ -117,10 +135,6 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
 
                             $return = $tag;
                         }
-                    }
-
-                    if ($isSpecialMethod === true) {
-                        return;
                     }
 
                     if ($return !== null) {
@@ -182,6 +196,23 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                                 }
                             } else {
                                 if ($content !== 'mixed') {
+                                    // If a return type hint does not exists
+                                    $returnHint = $phpcsFile->findNext([T_RETURN_TYPE], $stackPtr);
+
+                                    if (count($typeNames) === 1 && $returnHint === false) {
+                                        $error = 'Missing return type hint';
+                                        $phpcsFile->addError($error, $returnHint, 'NoReturnTypeHint');
+                                    }
+
+                                    if (count($typeNames) === 1 && $tokens[$returnHint]['content'] !== $suggestedType) {
+                                        $error = 'Expected "%s" but the type is not the same or no return type found';
+                                        $data = [$suggestedType];
+                                        $fix = $phpcsFile->addFixableError($error, $returnHint, 'InvalidReturn', $data);
+                                        if ($fix === true) {
+                                            $phpcsFile->fixer->replaceToken(($return + 2), $suggestedType);
+                                        }
+                                    }
+
                                     // If return type is not void, there needs to be a return statement
                                     // somewhere in the function that returns something.
                                     if (isset($tokens[$stackPtr]['scope_closer']) === true) {
@@ -197,6 +228,7 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                                                 null,
                                                 true
                                             );
+
                                             if ($tokens[$semicolon]['code'] === T_SEMICOLON) {
                                                 $error = 'Function return type is not void, but function is returning void here';
                                                 $phpcsFile->addError($error, $returnToken, 'InvalidReturnNotVoid');
