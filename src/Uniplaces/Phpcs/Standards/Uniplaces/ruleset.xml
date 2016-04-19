@@ -70,6 +70,9 @@
     <rule ref="Uniplaces.PHP.FunctionComment.MissingParamComment">
         <exclude-pattern>*</exclude-pattern>
     </rule>
+    <rule ref="Uniplaces.PHP.FunctionComment.EmptyThrows">
+        <exclude-pattern>*</exclude-pattern>
+    </rule>
     <!-- Parses and verifies the doc comments for functions -->
     <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
     <!-- Parses and verifies the class doc comment -->

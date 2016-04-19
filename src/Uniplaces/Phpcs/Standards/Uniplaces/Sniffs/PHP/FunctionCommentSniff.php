@@ -106,6 +106,13 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                         return;
                     }
 
+                    $endToken = $tokens[$stackPtr]['scope_closer'];
+                    $returnToken = $phpcsFile->findNext([T_RETURN], $stackPtr, $endToken);
+                    $parenthesesCloserBeforeCurlyOpenToken = $phpcsFile->findPrevious(
+                        [T_CLOSE_PARENTHESIS],
+                        $tokens[$stackPtr]['scope_opener']
+                    );
+
                     // verify if a return type hint is present when a return statement exists
                     if ($isInheritdoc) {
                         // If return type is not void, there needs to be a return statement
@@ -116,7 +123,11 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                             $returnHint = $phpcsFile->findNext([T_RETURN_TYPE], $stackPtr);
                             if ($returnToken !== false && $returnHint === false) {
                                 $warning = 'Function return type hint is missing?';
-                                $phpcsFile->addWarning($warning, $tokens[$stackPtr]['scope_opener'], 'MissingReturnTypeHintWithInheritdoc');
+                                $phpcsFile->addWarning(
+                                    $warning,
+                                    $parenthesesCloserBeforeCurlyOpenToken,
+                                    'MissingReturnTypeHintWithInheritdoc'
+                                );
                             }
                         }
 
@@ -201,23 +212,18 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
 
                                     if (count($typeNames) === 1 && $returnHint === false) {
                                         $error = 'Missing return type hint';
-                                        $phpcsFile->addError($error, $returnHint, 'NoReturnTypeHint');
+                                        $phpcsFile->addError($error, $parenthesesCloserBeforeCurlyOpenToken, 'NoReturnTypeHint');
                                     }
 
                                     if (count($typeNames) === 1 && $tokens[$returnHint]['content'] !== $suggestedType) {
                                         $error = 'Expected "%s" but the type is not the same or no return type found';
                                         $data = [$suggestedType];
-                                        $fix = $phpcsFile->addFixableError($error, $returnHint, 'InvalidReturn', $data);
-                                        if ($fix === true) {
-                                            $phpcsFile->fixer->replaceToken(($return + 2), $suggestedType);
-                                        }
+                                        $phpcsFile->addFixableError($error, $parenthesesCloserBeforeCurlyOpenToken, 'InvalidReturn', $data);
                                     }
 
                                     // If return type is not void, there needs to be a return statement
                                     // somewhere in the function that returns something.
                                     if (isset($tokens[$stackPtr]['scope_closer']) === true) {
-                                        $endToken = $tokens[$stackPtr]['scope_closer'];
-                                        $returnToken = $phpcsFile->findNext([T_RETURN, T_YIELD], $stackPtr, $endToken);
                                         if ($returnToken === false) {
                                             $error = 'Function return type is not void, but function has no return statement';
                                             $phpcsFile->addError($error, $return, 'InvalidNoReturn');
