@@ -33,14 +33,31 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniffUnitTest extends AbstractSniffUni
                     17 => 1,
                     24 => 1,
                     31 => 2,
-                    38 => 1
+                    34 => 2,
+                    38 => 1,
+                    41 => 2,
+                    50 => 1,
+                    57 => 1,
+                    64 => 1
                 ];
             case 'FunctionCommentUnitTest.2.inc':
                 return [
                     20 => 1,
                     30 => 1,
                     40 => 2,
-                    50 => 1
+                    50 => 1,
+                    74 => 1,
+                    76 => 1,
+                    83 => 1,
+                    85 => 1,
+                    94 => 2,
+                    100 => 2,
+                    102 => 1,
+                    104 => 1,
+                    109 => 2,
+                    111 => 1,
+                    120 => 1,
+                    131 => 1
                 ];
         }
 

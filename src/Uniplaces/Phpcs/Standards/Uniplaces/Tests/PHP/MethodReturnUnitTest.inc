@@ -23,9 +23,28 @@ class MethodReturn
     /**
      * @return string
      */
-    public function returnOkWithStatements()
+    public function returnWithMultipleReturnsAndSomeOkAndOthersNotOk()
     {
         $a = '';
+        if ($a === false) {
+            return '';
+        }
+
+        if ($a === '') {
+            $b = $a;
+
+            return $b;
+        }
+
+        if ($a === 'b') {
+            $b = $a;
+            return $b;
+        }
+
+        if ($a === 'c') {
+            // comment
+            return $a;
+        }
 
         return $a;
     }
@@ -36,6 +55,31 @@ class MethodReturn
     public function returnNotOkWithStatements()
     {
         $a = '';
+        return $a;
+    }
+
+    /**
+     * @return string
+     */
+    public function returnOkWithStatements()
+    {
+        $a = '';
+        if ($a === false) {
+            return '';
+        }
+
+        if ($a === '') {
+            $b = $a;
+
+            return $b;
+        }
+
+        if ($a === 'b') {
+            $b = $a;
+
+            return $b;
+        }
+
         return $a;
     }
 }
