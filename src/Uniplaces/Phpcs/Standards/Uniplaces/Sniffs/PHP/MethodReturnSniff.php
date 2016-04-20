@@ -23,7 +23,6 @@ class Uniplaces_Sniffs_PHP_MethodReturnSniff extends PHP_CodeSniffer_Standards_A
     public function __construct()
     {
         parent::__construct(array(T_CLASS), array(T_FUNCTION));
-
     }
 
     /**

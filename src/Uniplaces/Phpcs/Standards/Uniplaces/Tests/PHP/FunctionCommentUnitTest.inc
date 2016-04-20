@@ -1,0 +1,44 @@
+<?php
+
+class FunctionComment
+{
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    public function allOk(string $text): string
+    {
+        return $text;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    public function missingParamTypeHint($text): string
+    {
+        return $text;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    public function missingReturnTypeHint(string $text)
+    {
+        return $text;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    public function missingReturnAndParamTypeHint($text)
+    {
+        return $text;
+    }
+}

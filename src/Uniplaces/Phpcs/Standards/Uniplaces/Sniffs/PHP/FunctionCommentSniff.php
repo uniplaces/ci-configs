@@ -171,7 +171,7 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                                     $suggestedType,
                                     $content,
                                 ];
-                                $fix = $phpcsFile->addFixableError($error, $return, 'InvalidReturn', $data);
+                                $fix = $phpcsFile->addError($error, $return, 'InvalidReturn', $data);
                                 if ($fix === true) {
                                     $phpcsFile->fixer->replaceToken(($return + 2), $suggestedType);
                                 }
@@ -218,7 +218,7 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                                     if (count($typeNames) === 1 && $tokens[$returnHint]['content'] !== $suggestedType) {
                                         $error = 'Expected "%s" but the type is not the same or no return type found';
                                         $data = [$suggestedType];
-                                        $phpcsFile->addFixableError($error, $parenthesesCloserBeforeCurlyOpenToken, 'InvalidReturn', $data);
+                                        $phpcsFile->addError($error, $parenthesesCloserBeforeCurlyOpenToken, 'InvalidReturn', $data);
                                     }
 
                                     // If return type is not void, there needs to be a return statement
