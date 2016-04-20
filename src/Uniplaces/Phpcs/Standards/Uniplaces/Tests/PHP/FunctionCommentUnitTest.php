@@ -21,16 +21,30 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniffUnitTest extends AbstractSniffUni
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
+     * @param string $testFile The name of the file being tested.
+     *
      * @return array<int, int>
      */
-    public function getErrorList()
+    public function getErrorList($testFile = '')
     {
-        return [
-            20 => 1,
-            30 => 2,
-            40 => 3
-        ];
+        switch ($testFile) {
+            case 'FunctionCommentUnitTest.1.inc':
+                return [
+                    17 => 1,
+                    24 => 1,
+                    31 => 2,
+                    38 => 1
+                ];
+            case 'FunctionCommentUnitTest.2.inc':
+                return [
+                    20 => 1,
+                    30 => 1,
+                    40 => 2,
+                    50 => 1
+                ];
+        }
 
+        return [];
     }
 
     /**
@@ -39,10 +53,21 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniffUnitTest extends AbstractSniffUni
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
+     * @param string $testFile The name of the file being tested.
+     *
      * @return array<int, int>
      */
-    public function getWarningList()
+    public function getWarningList($testFile = '')
     {
+        switch ($testFile) {
+            case 'FunctionCommentUnitTest.1.inc':
+                return [];
+            case 'FunctionCommentUnitTest.2.inc':
+                return [
+                    58 => 1
+                ];
+        }
+
         return [];
     }
 }

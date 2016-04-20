@@ -41,4 +41,30 @@ class FunctionComment
     {
         return $text;
     }
+
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    public function missingDifferentReturnTypeHintAndComment(string $text): bool
+    {
+        return (bool) $text;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function missingReturnTypeHintWithInheritdoc($text)
+    {
+        return $text;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function allOkWithInheritdoc($text): string
+    {
+        return $text;
+    }
 }

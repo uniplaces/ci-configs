@@ -78,10 +78,73 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
     {
         $tokens = $phpcsFile->getTokens();
 
-        $isInheritdoc = $this->isInheritDoc($phpcsFile, $stackPtr);
+        // Validates interfaces return type hint
+        $interfaceToken = $phpcsFile->findPrevious(T_INTERFACE, $stackPtr);
+        $isInterface = $interfaceToken !== false && $tokens[$interfaceToken]['code'] === T_INTERFACE;
+        if ($isInterface) {
+            $return = null;
+            foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
+                if ($tokens[$tag]['content'] === '@return') {
+                    if ($return !== null) {
+                        $error = 'Only 1 @return tag is allowed in a function comment';
+                        $phpcsFile->addError($error, $tag, 'DuplicateReturn');
+
+                        return;
+                    }
+
+                    $return = $tag;
+                }
+            }
+
+            $content = $return !== null ? $tokens[($return + 2)]['content'] : false;
+            if ($content !== false && $content !== 'mixed') {
+                $typeNames = explode('|', $content);
+                $suggestedNames = [];
+                foreach ($typeNames as $i => $typeName) {
+                    $suggestedName = static::suggestType($typeName);
+                    if (in_array($suggestedName, $suggestedNames) === false) {
+                        $suggestedNames[] = $suggestedName;
+                    }
+                }
+
+                $suggestedType = implode('|', $suggestedNames);
+
+                $interfaceMethodEntToken = $phpcsFile->findNext(
+                    T_SEMICOLON,
+                    $stackPtr
+                );
+
+                if (count($typeNames) > 1) {
+                    return;
+                }
+
+                // If a return type hint does not exists
+                $returnHint = $phpcsFile->findNext(T_RETURN_TYPE, $stackPtr, $interfaceMethodEntToken);
+                $hasReturnHint = $returnHint !== false;
+
+                if (count($typeNames) === 1 && !$hasReturnHint) {
+                    $error = 'Missing return type hint';
+                    $phpcsFile->addError($error, $stackPtr, 'NoReturnTypeHint');
+                }
+
+                if (count($typeNames) === 1 && $hasReturnHint && $tokens[$returnHint]['content'] !== $suggestedType) {
+                    $error = 'Expected "%s" but the type is not the same or no return type found';
+                    $data = [$suggestedType];
+                    $phpcsFile->addError(
+                        $error,
+                        $stackPtr,
+                        'InvalidReturnOrReturnTypeHint',
+                        $data
+                    );
+                }
+
+            }
+
+            return;
+        }
 
         // Only check for a return comment if a non-void return statement exists
-        if (isset($tokens[$stackPtr]['scope_opener']) || $isInheritdoc) {
+        if (isset($tokens[$stackPtr]['scope_opener'])) {
             // Start inside the function
             $start = $phpcsFile->findNext(
                 T_OPEN_CURLY_BRACKET,
@@ -99,28 +162,27 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                 if ($tokens[$i]['code'] === T_RETURN
                     && $this->isMatchingReturn($tokens, $i)
                 ) {
-                    $methodName = $phpcsFile->getDeclarationName($stackPtr);
+                    $methodName = $phpcsFile->getDeclarationName($phpcsFile->findPrevious(T_FUNCTION, $stackPtr));
 
                     // Skip constructor and destructor.
                     if ($methodName === '__construct' || $methodName === '__destruct') {
                         return;
                     }
 
-                    $endToken = $tokens[$stackPtr]['scope_closer'];
-                    $returnToken = $phpcsFile->findNext([T_RETURN], $stackPtr, $endToken);
-                    $parenthesesCloserBeforeCurlyOpenToken = $phpcsFile->findPrevious(
-                        [T_CLOSE_PARENTHESIS],
-                        $tokens[$stackPtr]['scope_opener']
+                    $endToken = isset($tokens[$stackPtr]['scope_closer']) ? $tokens[$stackPtr]['scope_closer'] : false;
+                    $returnToken = $phpcsFile->findNext(T_RETURN, $stackPtr, $endToken);
+                    $parenthesesCloserBeforeCurlyOpenToken = $phpcsFile->findNext(
+                        T_CLOSE_PARENTHESIS,
+                        $stackPtr-1,
+                        $endToken
                     );
 
-                    // verify if a return type hint is present when a return statement exists
-                    if ($isInheritdoc) {
+                    // verify if a return type hint's present when a return statement exists when docblock is inheritdoc
+                    if ($this->isInheritDoc($phpcsFile, $stackPtr)) {
                         // If return type is not void, there needs to be a return statement
                         // somewhere in the function that returns something.
-                        if (isset($tokens[$stackPtr]['scope_closer']) === true) {
-                            $endToken = $tokens[$stackPtr]['scope_closer'];
-                            $returnToken = $phpcsFile->findNext([T_RETURN], $stackPtr, $endToken);
-                            $returnHint = $phpcsFile->findNext([T_RETURN_TYPE], $stackPtr);
+                        if ($endToken !== false) {
+                            $returnHint = $phpcsFile->findNext(T_RETURN_TYPE, $stackPtr, $endToken);
                             if ($returnToken !== false && $returnHint === false) {
                                 $warning = 'Function return type hint is missing?';
                                 $phpcsFile->addWarning(
@@ -208,17 +270,17 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                             } else {
                                 if ($content !== 'mixed') {
                                     // If a return type hint does not exists
-                                    $returnHint = $phpcsFile->findNext([T_RETURN_TYPE], $stackPtr);
-
-                                    if (count($typeNames) === 1 && $returnHint === false) {
+                                    $returnHint = $phpcsFile->findNext(T_RETURN_TYPE, $stackPtr, $endToken);
+                                    $hasReturnHint = $returnHint !== false;
+                                    if (count($typeNames) === 1 && !$hasReturnHint) {
                                         $error = 'Missing return type hint';
                                         $phpcsFile->addError($error, $parenthesesCloserBeforeCurlyOpenToken, 'NoReturnTypeHint');
                                     }
 
-                                    if (count($typeNames) === 1 && $tokens[$returnHint]['content'] !== $suggestedType) {
+                                    if (count($typeNames) === 1 && $hasReturnHint && $tokens[$returnHint]['content'] !== $suggestedType) {
                                         $error = 'Expected "%s" but the type is not the same or no return type found';
                                         $data = [$suggestedType];
-                                        $phpcsFile->addError($error, $parenthesesCloserBeforeCurlyOpenToken, 'InvalidReturn', $data);
+                                        $phpcsFile->addError($error, $parenthesesCloserBeforeCurlyOpenToken, 'InvalidReturnOrReturnTypeHint', $data);
                                     }
 
                                     // If return type is not void, there needs to be a return statement
