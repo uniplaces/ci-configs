@@ -14,7 +14,7 @@ if (class_exists('PEAR_Sniffs_Commenting_FunctionCommentSniff', true) === false)
 }
 
 /**
- * Class Uniplaces_Sniffs_PHP_ClassCommentSniff
+ * Uniplaces_Sniffs_PHP_ClassCommentSniff
  *
  * @author Daniel Gomes <daniel@uniplaces.com>
  */

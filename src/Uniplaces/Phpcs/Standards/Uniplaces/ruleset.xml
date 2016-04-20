@@ -142,7 +142,6 @@
     <rule ref="PEAR.Functions.FunctionCallSignature.Indent">
         <severity>0</severity>
     </rule>
-
     <!-- end of FUNCTIONS -->
 
     <!-- PHP -->
@@ -165,6 +164,9 @@
     <!-- METHODS -->
     <rule ref="PSR2.Methods.FunctionCallSignature.Indent">
         <severity>0</severity>
+    </rule>
+    <rule ref="Uniplaces.PHP.MethodReturn">
+        <severity>1</severity>
     </rule>
     <!-- end of METHODS -->
 
