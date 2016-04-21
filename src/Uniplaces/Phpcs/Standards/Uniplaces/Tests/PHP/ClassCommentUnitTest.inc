@@ -1,29 +1,29 @@
 <?php
 
-class ClassCommentWithoutDocblock
+class ClassCommentWithoutDocBlock
 {
 }
 
 /**
- * ClassCommentWithCorrectDocblock
+ * ClassCommentWithCorrectDocBlock
  *
  * @method string __toString()
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class ClassCommentWithCorrectDocblock
+class ClassCommentWithCorrectDocBlock
 {
 }
 
 /*
- * ClassCommentWithWrongDocblock
+ * ClassCommentWithWrongDocBlock
  */
-class ClassCommentWithWrongDocblock
+class ClassCommentWithWrongDocBlock
 {
 }
 
-/** ClassCommentWithInlineDocblock */
-class ClassCommentWithInlineDocblock
+/** ClassCommentWithInlineDocBlock */
+class ClassCommentWithInlineDocBlock
 {
 }
 
@@ -33,11 +33,27 @@ class ClassCommentWithSingleComment
 }
 
 /**
- * ClassCommentWithCorrectDocblock
+ * ClassCommentWithCorrectDocBlock
  *
  * @package
  * @author
  */
 class ClassCommentWithNotAllowedTags
+{
+}
+
+/**
+ * ClassCommentWithNewLine
+ *
+ */
+
+class ClassCommentWithNewLine
+{
+}
+/**
+ * ClassCommentWithNewLine
+ *
+ */
+class ClassCommentWithoutNewLineBetweenClasses
 {
 }

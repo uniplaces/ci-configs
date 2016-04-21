@@ -28,7 +28,9 @@ class Uniplaces_Sniffs_PHP_ClassCommentSniffUnitTest extends AbstractSniffUnitTe
         return [
             3 => 1,
             21 => 1,
-            31 => 1
+            31 => 1,
+            48 => 1,
+            53 => 1
         ];
     }
 

@@ -92,4 +92,62 @@ class MethodReturn
         return '';
         // @codeCoverageIgnoreEnd
     }
+
+    /**
+     * @return string
+     */
+    public function returnNotOkWithNewLineBetweenCommentAndReturnStatement()
+    {
+        if (true == 'c') {
+            // comment
+            return '';
+        }
+
+        if (true == 'c') {
+            // comment
+
+            return '';
+        }
+
+        if (true == 'c') {
+
+            return '';
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function returnNotOkWithNewLineBeforeReturnStatement()
+    {
+
+        return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function returnNotOkWithMoreThanTwoNewLineBeforeReturnStatement()
+    {
+        // this is a comment
+        $a = '';
+
+
+
+        return $a;
+    }
+
+    /**
+     * @return string
+     */
+    public function returnNotOkWithMoreThanTwoNewLineBeforeReturnStatement2()
+    {
+        if (true) {
+            return '';
+        }
+
+
+
+        return $a;
+    }
 }

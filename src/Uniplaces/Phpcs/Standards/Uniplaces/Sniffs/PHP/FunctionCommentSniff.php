@@ -482,57 +482,56 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
 
                         $phpcsFile->fixer->replaceToken(($param['tag'] + 2), $content);
                     }
-                } else {
-                    if (count($typeNames) === 1) {
-                        // Check type hint for array and custom type.
-                        if (strpos($suggestedName, 'array') !== false) {
-                            $suggestedTypeHint = 'array';
+                }
+                if (count($typeNames) === 1) {
+                    // Check type hint for array and custom type.
+                    if (strpos($suggestedName, 'array') !== false) {
+                        $suggestedTypeHint = 'array';
+                    } else {
+                        if (strpos($suggestedName, 'callable') !== false) {
+                            $suggestedTypeHint = 'callable';
                         } else {
-                            if (strpos($suggestedName, 'callable') !== false) {
-                                $suggestedTypeHint = 'callable';
-                            } else {
-                                $suggestedTypeHint = $suggestedName;
-                            }
+                            $suggestedTypeHint = $suggestedName;
                         }
+                    }
 
-                        if ($suggestedTypeHint !== '' && isset($realParams[$pos]) === true) {
-                            $typeHint = $realParams[$pos]['type_hint'];
-                            if ($typeHint === '') {
-                                $error = 'Type hint "%s" missing for %s';
+                    if ($suggestedTypeHint !== '' && isset($realParams[$pos]) === true) {
+                        $typeHint = $realParams[$pos]['type_hint'];
+                        if ($typeHint === '') {
+                            $error = 'Type hint "%s" missing for %s';
+                            $data = [
+                                $suggestedTypeHint,
+                                $param['var'],
+                            ];
+                            $phpcsFile->addError($error, $stackPtr, 'TypeHintMissing', $data);
+                        } else {
+                            if ($typeHint !== substr($suggestedTypeHint, (strlen($typeHint) * -1))) {
+                                $error = 'Expected scalar type hint "%s"; found "%s" for %s';
                                 $data = [
                                     $suggestedTypeHint,
+                                    $typeHint,
                                     $param['var'],
                                 ];
-                                $phpcsFile->addError($error, $stackPtr, 'TypeHintMissing', $data);
-                            } else {
-                                if ($typeHint !== substr($suggestedTypeHint, (strlen($typeHint) * -1))) {
-                                    $error = 'Expected type hint "%s"; found "%s" for %s';
-                                    $data = [
-                                        $suggestedTypeHint,
-                                        $typeHint,
-                                        $param['var'],
-                                    ];
-                                    $phpcsFile->addError($error, $stackPtr, 'IncorrectTypeHint', $data);
-                                }
+                                $phpcsFile->addError($error, $stackPtr, 'IncorrectTypeHint', $data);
                             }
-                        } else {
-                            if ($suggestedTypeHint === '' && isset($realParams[$pos]) === true) {
-                                $typeHint = $realParams[$pos]['type_hint'];
-                                if (!$hasType && $typeHint !== '') {
-                                    $error = 'Param type "%s" missing for "%s"';
-                                    $data = [
-                                        $typeHint,
-                                        $param['var']
-                                    ];
-                                    $phpcsFile->addError($error, $param['pos'], 'MissingParamType', $data);
-                                } elseif ($typeHint !== '') {
-                                    $error = 'Unknown type hint "%s" found for "%s"';
-                                    $data = [
-                                        $typeHint,
-                                        $param['var'],
-                                    ];
-                                    $phpcsFile->addError($error, $stackPtr, 'InvalidTypeHint', $data);
-                                }
+                        }
+                    } else {
+                        if ($suggestedTypeHint === '' && isset($realParams[$pos]) === true) {
+                            $typeHint = $realParams[$pos]['type_hint'];
+                            if (!$hasType && $typeHint !== '') {
+                                $error = 'Param type "%s" missing for "%s"';
+                                $data = [
+                                    $typeHint,
+                                    $param['var']
+                                ];
+                                $phpcsFile->addError($error, $param['pos'], 'MissingParamType', $data);
+                            } elseif ($typeHint !== '') {
+                                $error = 'Unknown type hint "%s" found for "%s"';
+                                $data = [
+                                    $typeHint,
+                                    $param['var'],
+                                ];
+                                $phpcsFile->addError($error, $stackPtr, 'InvalidTypeHint', $data);
                             }
                         }
                     }
@@ -684,23 +683,6 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
     }
 
     /**
-     * Is the return statement matching?
-     *
-     * @param array $tokens    Array of tokens
-     * @param int   $returnPos Stack position of the T_RETURN token to process
-     *
-     * @return boolean True if the return does not return anything
-     */
-    protected function isMatchingReturn($tokens, $returnPos)
-    {
-        do {
-            $returnPos++;
-        } while ($tokens[$returnPos]['code'] === T_WHITESPACE);
-
-        return $tokens[$returnPos]['code'] !== T_SEMICOLON;
-    }
-
-    /**
      * Returns a valid variable type for param/var tag.
      *
      * If type is not one of the standard type, it must be a custom type.
@@ -724,7 +706,6 @@ class Uniplaces_Sniffs_PHP_FunctionCommentSniff extends Squiz_Sniffs_Commenting_
                 case 'boolean':
                     return 'bool';
                 case 'double':
-                case 'real':
                     return 'float';
                 case 'integer':
                     return 'int';

@@ -143,4 +143,89 @@ class FunctionComment
             throw new \InvalidArgumentException('You must provide at least one email address');
         }
     }
+
+    /**
+     * @return string
+     * @return string
+     */
+    public function doubleReturnTags(): string
+    {
+        return '';
+    }
+
+    /**
+     * @param integer $a
+     *
+     * @return integer
+     */
+    public function returnIntegerInsteadOfInt(integer $a): integer
+    {
+        return $a;
+    }
+
+    /**
+     * @param integer $a
+     */
+    public function paramIntegerInsteadOfInt(integer $a)
+    {
+    }
+
+    /**
+     * @param int     $a    Comment.
+     */
+    public function paramTypeTooManySpacesInsteadOfInt(int $a)
+    {
+    }
+
+    /**
+     * @param int $b Comment.
+     */
+    public function paramTypeNameMismatchParamArgument(int $a)
+    {
+    }
+
+    /**
+     * @param int $b comment.
+     */
+    public function paramTypeCommnetLowercase(int $b)
+    {
+    }
+
+    /**
+     * @param int $b Comment
+     */
+    public function paramTypeCommnetWithoutEndPeriod(int $b)
+    {
+    }
+
+    /**
+     * @param boolean $a
+     * @param double  $b
+     * @param array() $d
+     */
+    public function paramTypeSuggestions(boolean $a, double $b, array $d)
+    {
+    }
+
+    /**
+     * @param \Exception $e
+     */
+    public function paramTypeClass(\Exception $e)
+    {
+    }
+
+    /**
+     * @param
+     */
+    public function MissingParamDataTag(string $e)
+    {
+    }
+
+    /**
+     * @return string
+     */
+    public function MissingParamTag(string $e): string
+    {
+        return '';
+    }
 }

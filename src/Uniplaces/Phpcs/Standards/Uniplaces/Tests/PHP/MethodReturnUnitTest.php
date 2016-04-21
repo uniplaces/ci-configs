@@ -28,7 +28,12 @@ class Uniplaces_Sniffs_PHP_MethodReturnSniffUnitTest extends AbstractSniffUnitTe
         return [
             11 => 1,
             41 => 1,
-            58 => 1
+            58 => 1,
+            109 => 1,
+            114 => 1,
+            124 => 1,
+            137 => 1,
+            151 => 1
         ];
     }
 

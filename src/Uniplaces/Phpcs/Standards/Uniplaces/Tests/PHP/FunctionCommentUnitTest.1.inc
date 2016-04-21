@@ -62,4 +62,10 @@ interface FunctionCommentInterface
      * @return bool
      */
     public function mismatchReturnTypeHintAndScalarTypeHint(string $text): bool;
+
+    /**
+     * @return bool
+     * @return bool
+     */
+    public function doubleReturnTags(): bool;
 }
