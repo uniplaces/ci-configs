@@ -25,11 +25,11 @@ class Uniplaces_Sniffs_PHP_ClassCommentSniffUnitTest extends AbstractSniffUnitTe
      */
     public function getErrorList()
     {
-        return array(
-            3  => 1,
-            17 => 1,
-            27 => 1
-        );
+        return [
+            3 => 1,
+            21 => 1,
+            31 => 1
+        ];
     }
 
     /**
@@ -42,6 +42,9 @@ class Uniplaces_Sniffs_PHP_ClassCommentSniffUnitTest extends AbstractSniffUnitTe
      */
     public function getWarningList()
     {
-        return array();
+        return [
+            38 => 1,
+            39 => 1
+        ];
     }
 }

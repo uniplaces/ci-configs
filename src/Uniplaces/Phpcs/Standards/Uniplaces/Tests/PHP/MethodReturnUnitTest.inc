@@ -82,4 +82,14 @@ class MethodReturn
 
         return $a;
     }
+
+    /**
+     * @return string
+     */
+    public function returnOkWithCoverageIgnoreComment()
+    {
+        // @codeCoverageIgnoreStart
+        return '';
+        // @codeCoverageIgnoreEnd
+    }
 }

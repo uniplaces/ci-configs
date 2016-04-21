@@ -6,6 +6,10 @@ class ClassCommentWithoutDocblock
 
 /**
  * ClassCommentWithCorrectDocblock
+ *
+ * @method string __toString()
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class ClassCommentWithCorrectDocblock
 {
@@ -25,5 +29,15 @@ class ClassCommentWithInlineDocblock
 
 // ClassCommentWithSingleComment
 class ClassCommentWithSingleComment
+{
+}
+
+/**
+ * ClassCommentWithCorrectDocblock
+ *
+ * @package
+ * @author
+ */
+class ClassCommentWithNotAllowedTags
 {
 }

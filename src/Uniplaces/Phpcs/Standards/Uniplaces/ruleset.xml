@@ -59,9 +59,9 @@
 
     <!-- CODE ANALYSIS -->
     <!-- Checks the for unused function parameters -->
-    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <!-- <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/> -->
     <!-- Detects unnecessary overridden methods that simply call their parent -->
-    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
+    <!-- <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/> -->
     <!-- endo of CODE ANALYSIS-->
 
     <!-- COMMENTING -->
