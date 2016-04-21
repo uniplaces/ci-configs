@@ -1,0 +1,12 @@
+machine:
+  php:
+    version: 7.0.4
+dependencies:
+  pre:
+    - echo "memory_limit = 3g" > ~/.phpenv/versions/$(phpenv global)/etc/conf.d/memory.ini
+    - echo "xdebug.max_nesting_level = 1000" >> ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini
+    - composer config -g github-oauth.github.com 462a449f0f796fdba97ba417164c32d24ca36661
+  override:
+    - composer install --dev --no-interaction
+  cache_directories:
+    - ~/.composer/cache
