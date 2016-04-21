@@ -24,9 +24,7 @@ class Uniplaces_Sniffs_PHP_ClassCommentSniff implements PHP_CodeSniffer_Sniff
     public function register()
     {
         return [T_CLASS];
-
-    }//end register()
-
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -92,7 +90,8 @@ class Uniplaces_Sniffs_PHP_ClassCommentSniff implements PHP_CodeSniffer_Sniff
 
         foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
             $tagContent = $tokens[$tag]['content'];
-            if ($tagContent === '@method' || !strpos($tagContent, '@SuppressWarnings') || !strpos(__CLASS__, 'Test')) {
+            $className = $phpcsFile->getDeclarationName($stackPtr);
+            if ($tagContent === '@method' || strpos($tagContent, 'SuppressWarnings') !== false || strpos($className, 'Test') !== false) {
                 continue;
             }
 
@@ -100,9 +99,6 @@ class Uniplaces_Sniffs_PHP_ClassCommentSniff implements PHP_CodeSniffer_Sniff
             $data = [$tokens[$tag]['content']];
             $phpcsFile->addWarning($error, $tag, 'TagNotAllowed', $data);
         }
-
-    }//end process()
-
-
-}//end class
+    }
+}
 

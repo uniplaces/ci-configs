@@ -23,7 +23,6 @@ class Uniplaces_Sniffs_PHP_MethodReturnSniff extends PHP_CodeSniffer_Standards_A
     public function __construct()
     {
         parent::__construct(array(T_CLASS), array(T_FUNCTION));
-
     }
 
     /**
@@ -52,13 +51,18 @@ class Uniplaces_Sniffs_PHP_MethodReturnSniff extends PHP_CodeSniffer_Standards_A
             $returnTokenLine = $tokens[$returnToken]['line'];
             $returnPreviousOpenCurlyBracket = $phpcsFile->findPrevious(T_OPEN_CURLY_BRACKET, $returnToken);
             $returnPreviousOpenCurlyBracketLine = $tokens[$returnPreviousOpenCurlyBracket]['line'];
+            $returnPreviousClosedCurlyBracket = $phpcsFile->findPrevious(T_CLOSE_CURLY_BRACKET, $returnToken);
+            $returnPreviousClosedCurlyBracketLine = $returnPreviousClosedCurlyBracket !== false ? $tokens[$returnPreviousClosedCurlyBracket]['line'] : false;
             $returnPreviousSemicolon = $phpcsFile->findNext(T_SEMICOLON, $returnPreviousOpenCurlyBracket, $returnToken);
             $returnPreviousComment = $phpcsFile->findPrevious(T_COMMENT, $returnToken);
             $returnPreviousCommentLine = $returnPreviousComment === false ? false : $tokens[$returnPreviousComment]['line'];
             $commentBetweenOpenCurlyAndReturn = $returnPreviousCommentLine !== false && $returnPreviousOpenCurlyBracketLine < $returnPreviousCommentLine && $returnPreviousCommentLine < $returnTokenLine;
             $returnTokenLine = $tokens[$returnToken]['line'];
 
-            if ($returnPreviousSemicolon === false && $returnTokenLine - $returnPreviousOpenCurlyBracketLine > 2 && !$commentBetweenOpenCurlyAndReturn) {
+            if ($returnPreviousSemicolon === false && $returnTokenLine - $returnPreviousOpenCurlyBracketLine > 2 && $commentBetweenOpenCurlyAndReturn) {
+                $error = 'Return statement MUST not have a new line before';
+                $phpcsFile->addError($error, $returnToken, 'NoNewLineBetweenCommentAndReturnStatement');
+            } elseif ($returnPreviousSemicolon === false && $returnTokenLine - $returnPreviousOpenCurlyBracketLine > 1 && !$commentBetweenOpenCurlyAndReturn) {
                 $error = 'Return statement MUST not have a new line before';
                 $phpcsFile->addError($error, $returnToken, 'ReturnStatementNoNewLine');
             }
@@ -74,6 +78,18 @@ class Uniplaces_Sniffs_PHP_MethodReturnSniff extends PHP_CodeSniffer_Standards_A
                 if ($returnPreviousSemicolonLine > $returnPreviousOpenCurlyBracketLine && $returnTokenLine - $returnPreviousSemicolonLine === 1) {
                     $error = 'Missing new line before return statement';
                     $phpcsFile->addError($error, $returnToken, 'ReturnStatementMissingNewLine');
+                }
+
+                if ($returnPreviousSemicolonLine > $returnPreviousClosedCurlyBracketLine && $returnTokenLine - $returnPreviousSemicolonLine > 2) {
+                    $error = 'Found %s new lines when expecting only 1 before return statement';
+                    $data = [$returnTokenLine - $returnPreviousSemicolonLine-1];
+                    $phpcsFile->addError($error, $returnToken, 'NewLinesBeforeReturnStatementExceeded', $data);
+                }
+
+                if ($returnPreviousClosedCurlyBracketLine > $returnPreviousSemicolonLine && $returnTokenLine - $returnPreviousClosedCurlyBracketLine > 2) {
+                    $error = 'Found %s new lines when expecting only 1 before return statement';
+                    $data = [$returnTokenLine - $returnPreviousClosedCurlyBracketLine-1];
+                    $phpcsFile->addError($error, $returnToken, 'NewLinesBeforeReturnStatementExceeded', $data);
                 }
             }
 

@@ -22,8 +22,7 @@ class Uniplaces_Sniffs_Debug_DebugCodeSniffTest extends \PHPUnit_Framework_TestC
     {
         $codeSnifferFile = Mockery::mock('PHP_CodeSniffer_File')->makePartial();
         $codeSnifferFile->shouldReceive('addError')->andReturn(true);
-        $codeSnifferFile->shouldReceive('getTokens')->andReturn([['type' => 'T_COMMENT', 'content' => 'print_r(']]);
-
+        $codeSnifferFile->shouldReceive('getTokens')->andReturn([['type' => 'T_COMMENT', 'content' => 'print_r']]);
         $debugCodeSniff = new Uniplaces_Sniffs_Debug_DebugCodeSniff();
         $this->assertTrue($debugCodeSniff->process($codeSnifferFile, 0));
     }
