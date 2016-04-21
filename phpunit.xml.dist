@@ -22,31 +22,4 @@
             <directory>src/Uniplaces/*/*/*/*/Tests</directory>
         </testsuite>
     </testsuites>
-
-    <listeners>
-        <listener class="PHPUnit\Runner\CleverAndSmart\TestListener">
-            <arguments>
-                <object class="PHPUnit\Runner\CleverAndSmart\Storage\Sqlite3Storage">
-                    <arguments>
-                        <string>/tmp/.phpunit-cas.db</string>
-                    </arguments>
-                </object>
-                <string>error_only</string>
-            </arguments>
-        </listener>
-    </listeners>
-
-    <filter>
-        <whitelist>
-            <directory>src/Uniplaces/</directory>
-            <exclude>
-                <directory>src/Uniplaces/Tests</directory>
-                <directory>src/Uniplaces/*/Tests</directory>
-            </exclude>
-        </whitelist>
-    </filter>
-
-    <logging>
-        <log type="coverage-clover" target="docs/phpunit/clover.xml"/>
-    </logging>
 </phpunit>
