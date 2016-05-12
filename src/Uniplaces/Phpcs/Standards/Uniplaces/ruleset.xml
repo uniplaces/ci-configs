@@ -155,9 +155,10 @@
     <rule ref="PSR2.Methods.FunctionCallSignature.Indent">
         <severity>0</severity>
     </rule>
+    <!-- Disabling since has bugs
     <rule ref="Uniplaces.PHP.MethodReturn">
         <severity>1</severity>
-    </rule>
+    </rule> -->
     <!-- end of METHODS -->
 
     <!-- STRINGS -->
